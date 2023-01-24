@@ -33,7 +33,7 @@ namespace YOURNAMESPACE
             DeleteMenu(sysMenu, SC_SIZE, MF_BYCOMMAND);
 
             //Set console properties
-            Console.Title = "Realm of the Wild Hunt";
+            /*Console.Title = ;*/
             Console.TreatControlCAsInput = true;
             Console.CursorVisible = false;
 
