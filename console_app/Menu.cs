@@ -23,12 +23,10 @@ namespace console_app
                     \__ \  _/ _` | '_|  _|
                     |___/\__\__,_|_|  \__|";
 
-            var linesstart = start.Split(new[] { Environment.NewLine },
-            StringSplitOptions.None);
-            var longestLengthstart = linesstart.Max(line => line.Length);
-            var leadingSpacesstart = new string(' ', longestLengthstart);
-            var startblock = string.Join(Environment.NewLine,
-                linesstart.Select(line => leadingSpacesstart + line));
+            string[] linesStart = start.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            int longestLengthStart = linesStart.Max(line => line.Length);
+            string leadingSpacesStart = new string(' ', longestLengthStart);
+            string startBlock = string.Join(Environment.NewLine, linesStart.Select(line => leadingSpacesStart + line));
 
             string save = @" 
                      ___               
@@ -36,52 +34,30 @@ namespace console_app
                     \__ \/ _` \ V / -_)
                     |___/\__,_|\_/\___|";
 
-            var linessave = save.Split(new[] { Environment.NewLine },
-            StringSplitOptions.None);
-            var longestLengthsave = linessave.Max(line => line.Length);
-            var leadingSpacessave = new string(' ', longestLengthsave);
-            var saveblock = string.Join(Environment.NewLine,
-                linessave.Select(line => leadingSpacessave + line));
+            string[] linesSave = save.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            int longestLengthSave = linesSave.Max(line => line.Length);
+            string leadingSpacesSave = new string(' ', longestLengthSave);
+            string saveBlock = string.Join(Environment.NewLine, linesSave.Select(line => leadingSpacesSave + line));
 
             string load = @" 
-                      _                 _ 
-                     | |   ___  __ _ __| |
-                     | |__/ _ \/ _` / _` |
-                     |____\___/\__,_\__,_|";
+                     _                 _ 
+                    | |   ___  __ _ __| |
+                    | |__/ _ \/ _` / _` |
+                    |____\___/\__,_\__,_|";
 
-            var linesload = load.Split(new[] { Environment.NewLine },
-            StringSplitOptions.None);
-            var longestLengthload = linesload.Max(line => line.Length);
-            var leadingSpacesload = new string(' ', longestLengthload);
-            var loadblock = string.Join(Environment.NewLine,
-                linesload.Select(line => leadingSpacesload + line));
+            string[] linesLoad = load.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            int longestLengthLoad = linesLoad.Max(line => line.Length);
+            string leadingSpacesLoad = new string(' ', longestLengthLoad);
+            string loadBlock = string.Join(Environment.NewLine, linesLoad.Select(line => leadingSpacesLoad + line));
 
-            string extra = @"
-                              _            
-                      _____ _| |_ _ _ __ _ 
-                     / -_) \ /  _| '_/ _` |
-                     \___/_\_\\__|_| \__,_|";
-
-            var linesextra = extra.Split(new[] { Environment.NewLine },
-            StringSplitOptions.None);
-            var longestLengthextra = linesextra.Max(line => line.Length);
-            var leadingSpacesextra = new string(' ', longestLengthextra);
-            var extrablock = string.Join(Environment.NewLine,
-                linesextra.Select(line => leadingSpacesextra + line));
-
-            string credits = @" 
-                                    _ _ _      
-                      __ _ _ ___ __| (_) |_ ___
-                     / _| '_/ -_) _` | |  _(_-<
-                     \__|_| \___\__,_|_|\__/__/";
-
-            var linescredits = credits.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-            var longestLengthcredits = linescredits.Max(line => line.Length);
-            var leadingSpacescredits = new string(' ', longestLengthcredits);
-            var creditsblock = string.Join(Environment.NewLine,
-                linescredits.Select(line => leadingSpacescredits + line));
-
-            int selectedClass = Menu.MultipleChoice(true, startblock, saveblock, loadblock, extrablock, creditsblock);
+            Console.Clear();
+            Console.WriteLine(start);
+            //Console.Clear();
+            Console.WriteLine(save);
+            //Console.Clear();
+            Console.WriteLine(load);
+            /*
+            int selectedClass = Menu.MultipleChoice(startBlock, saveBlock, loadBlock);
 
             switch (selectedClass)
             {
@@ -97,23 +73,12 @@ namespace console_app
                     Console.Clear();
                     Console.WriteLine("2");
                     break;
-                case 3:
-                    Console.Clear();
-                    Console.WriteLine("3");
-                    break;
-                case 4:
-                    Console.Clear();
-                    Console.WriteLine("4");
-                    break;
-            }
+            }*/
         }
 
-        public static int MultipleChoice(bool canCancel, params string[] options)
+        public static int MultipleChoice(params string[] options)
         {
-            const int startX = 20;
             const int startY = 0;
-            const int optionsPerLine = 2;
-            const int spacingPerLine = 5;
 
             int currentSelection = 0;
 
@@ -127,8 +92,7 @@ namespace console_app
 
                 for (int i = 0; i < options.Length; i++)
                 {
-                    Console.SetCursorPosition(startX + (i % optionsPerLine) * spacingPerLine,
-                    startY + i / optionsPerLine);
+                    Console.SetCursorPosition((i % 1)*5, (startY + i)*6);
                     if (i == currentSelection)
 
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -142,34 +106,18 @@ namespace console_app
                 switch (key)
                 {
                     case ConsoleKey.LeftArrow:
-                        if (currentSelection % optionsPerLine > 0)
+                        if (currentSelection > 0)
                         {
                             currentSelection--;
                         }
                         break;
                     case ConsoleKey.RightArrow:
-                        if (currentSelection % optionsPerLine < optionsPerLine - 1) {
+                        if (currentSelection < 0) {
                                 currentSelection++;
                         }
                         break;
-                    case ConsoleKey.UpArrow:
-                        if (currentSelection >= optionsPerLine)
-                        {
-                            currentSelection -= optionsPerLine;
-                        }
-                        break;
-                    case ConsoleKey.DownArrow:
-                        if (currentSelection + optionsPerLine < options.Length)
-                        {
-                            currentSelection += optionsPerLine;
-                        }
-                        break;
                     case ConsoleKey.Escape:
-                        if (canCancel)
-                        {
-                            return -1;
-                        }
-                        break;
+                        return -1;
                 }
             } while (key != ConsoleKey.Enter);
 
