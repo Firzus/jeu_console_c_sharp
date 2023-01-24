@@ -18,10 +18,10 @@ class Program
             "#########"
         };
 
-        // afficher la carte
+        // display map
         for (int y = 0; y < map.Length; y++)
         {
-            for (int x = 0; x < map.Length; x++)
+            for (int x = 0; x < map[y].Length; x++)
             {
                 char title = map[y][x];
                 Console.Write(title);
