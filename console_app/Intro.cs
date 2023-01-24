@@ -52,10 +52,12 @@ namespace console_app
                                                                                         **,.../%&&&&&&&(...,**
                                                                                               ***,..,,**";
 
-            var linesLogo = logo.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-            var longestLengthlogo = linesLogo.Max(line => line.Length);
-            var leadingSpaceslogo = new string(' ', longestLengthlogo);
-            var logoblock = string.Join(Environment.NewLine, linesLogo.Select(line => leadingSpaceslogo + line));
+            string[] linesLogo = logo.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            int longestLengthLogo = linesLogo.Max(line => line.Length);
+            string leadingSpacesLogo = new string(' ', longestLengthLogo);
+            string logoblock = string.Join(Environment.NewLine, linesLogo.Select(line => leadingSpacesLogo + line));
+
+            if ()
 
             Console.Clear();
             Console.WriteLine(logo);
