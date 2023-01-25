@@ -50,12 +50,11 @@ namespace console_app
             string leadingSpacesLoad = new string(' ', longestLengthLoad);
             string loadBlock = string.Join(Environment.NewLine, linesLoad.Select(line => leadingSpacesLoad + line));
 
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine(start);
-            //Console.Clear();
             Console.WriteLine(save);
-            //Console.Clear();
             Console.WriteLine(load);
+
             /*
             int selectedClass = Menu.MultipleChoice(startBlock, saveBlock, loadBlock);
 
