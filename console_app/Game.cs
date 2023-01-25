@@ -1,13 +1,16 @@
-﻿namespace console_app;
-class Game
+﻿using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+using console_app;
+
+namespace YOURNAMESPACE
 {
-    static void Main(string[] args)
+    [SupportedOSPlatform("windows")]
+    internal static class Game
     {
-        Intro intro= new Intro();
-        intro.drawIntro();
-
-        Menu.menu();
-
-        Console.WriteLine("Fuck the World!");
+        static void Main()
+        {
+            ConsoleManager.WindowSetup();
+            Map.drawMap();
+        }
     }
 }
