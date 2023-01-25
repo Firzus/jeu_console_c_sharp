@@ -9,14 +9,11 @@ namespace console_app
 {
     internal class Menu
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Icon { get; set; }
 
 
         public static void menu()
         {
+
             string start = @" 
                      ___ _            _   
                     / __| |_ __ _ _ _| |_ 
@@ -50,12 +47,7 @@ namespace console_app
             string leadingSpacesLoad = new string(' ', longestLengthLoad);
             string loadBlock = string.Join(Environment.NewLine, linesLoad.Select(line => leadingSpacesLoad + line));
 
-            //Console.Clear();
-            Console.WriteLine(start);
-            Console.WriteLine(save);
-            Console.WriteLine(load);
 
-            /*
             int selectedClass = Menu.MultipleChoice(startBlock, saveBlock, loadBlock);
 
             switch (selectedClass)
@@ -72,57 +64,86 @@ namespace console_app
                     Console.Clear();
                     Console.WriteLine("2");
                     break;
-            }*/
+            }
         }
 
         public static int MultipleChoice(params string[] options)
         {
-            const int startY = 0;
+            int currentPosition = 0;
 
-            int currentSelection = 0;
-
-            ConsoleKey key;
-
-            Console.CursorVisible = false;
-
+            ConsoleKey key = ConsoleKey.UpArrow;
             do
             {
-                Console.Clear();
-
-                for (int i = 0; i < options.Length; i++)
-                {
-                    Console.SetCursorPosition((i % 1)*5, (startY + i)*6);
-                    if (i == currentSelection)
-
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(options[i]);
-
-                    Console.ResetColor();
-                }
-
-                key = Console.ReadKey(true).Key;
-
+                // Get Input
+                key = Console.ReadKey().Key;
+                
+                // Update
                 switch (key)
                 {
-                    case ConsoleKey.LeftArrow:
-                        if (currentSelection > 0)
+                    case ConsoleKey.DownArrow:
+                        if (currentPosition < 2)
                         {
-                            currentSelection--;
+                            currentPosition++;
                         }
                         break;
-                    case ConsoleKey.RightArrow:
-                        if (currentSelection < 0) {
-                                currentSelection++;
+                    case ConsoleKey.UpArrow:
+                        if (currentPosition > 0)
+                        {
+                            currentPosition--;
                         }
                         break;
                     case ConsoleKey.Escape:
                         return -1;
                 }
+
+                // Draw
+                switch (currentPosition)
+                {
+                    case 0:
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(options[0]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(options[1]);
+                        Console.WriteLine(options[2]);
+                        break;
+                    case 1:
+                        Console.Clear();
+                        Console.WriteLine(options[0]);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(options[1]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(options[2]);
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine(options[0]);
+                        Console.WriteLine(options[1]);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(options[2]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                }
+
             } while (key != ConsoleKey.Enter);
 
-            Console.CursorVisible = true;
+            if (key == ConsoleKey.Enter)
+            {
+                switch (currentPosition)
+                {
+                    case 0:
+                        Map.drawMap();
+                        break;
+                    case 1:
+                        return -1;
+                        //break;
+                    case 2:
+                        return -1;
+                        //break;
+                }
+            } 
 
-            return currentSelection;
+            return currentPosition;
         }
     }
 }

@@ -31,12 +31,6 @@ namespace console_app
 
         public void drawIntro()
         {
-            /*
-            string[] linesLogo = logo.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-            int longestLengthLogo = linesLogo.Max(line => line.Length);
-            string leadingSpacesLogo = new string(' ', longestLengthLogo);
-            string logoblock = string.Join(Environment.NewLine, linesLogo.Select(line => leadingSpacesLogo + line));
-            */
 
             for (int j = 0; j < _logo.GetLength(1); j++)
             {
@@ -85,6 +79,10 @@ namespace console_app
                 }
                 Console.WriteLine();
             }
+
+            Thread.Sleep(2000);
+
+            Menu.menu();
         }
     }
 }
