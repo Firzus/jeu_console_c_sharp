@@ -8,28 +8,82 @@ namespace console_app
 {
     internal class Map
     {
-        public static void drawMap()
-        {
-            // modeling map
-            string[] map =
-            {
-            "#############################################",
-            "#.......#############################.......#",
-            "#.#.#.#.#############################.......#",
-            "#.......#############################.......#",
-            "#############################################"
-            };
+        char[,] _map;
 
-            // display map
-            for (int y = 0; y < map.Length; y++)
+        public Map()
+        {
+            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map.txt");
+            _map = new char[lines[1].Count(), lines.GetLength(0)];
+
+            int x = 0, y = 0;
+
+            foreach (string line in lines)
             {
-                for (int x = 0; x < map[y].Length; x++)
+                x = 0;
+                foreach (char c in line)
                 {
-                    char title = map[y][x];
-                    Console.Write(title);
+                    _map[x, y] = c;
+                    x++;
+                }
+                y++;
+            }
+        }
+
+        public void drawMap()
+        {
+            Console.Clear();
+
+            for (int j = 0; j < _map.GetLength(1); j++)
+            {
+                for (int i = 0; i < _map.GetLength(0); i++)
+                {
+                    switch (_map[i, j])
+                    {
+                        case '*':
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.BackgroundColor = ConsoleColor.DarkGray;
+                            break;
+                        case ',':
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.BackgroundColor = ConsoleColor.DarkGray;
+                            break;
+                        case '.':
+                            Console.ForegroundColor = ConsoleColor.DarkBlue;
+                            Console.BackgroundColor = ConsoleColor.DarkBlue;
+                            break;
+                        case '/':
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            break;
+                        case '(':
+                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                            Console.BackgroundColor = ConsoleColor.DarkCyan;
+                            break;
+                        case '&':
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.BackgroundColor = ConsoleColor.White;
+                            break;
+                        case '%':
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.BackgroundColor = ConsoleColor.Cyan;
+                            break;
+                        case '#':
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            break;
+                    }
+                    Console.Write(_map[i, j]);
                 }
                 Console.WriteLine();
             }
+
+            // Sleep for 2 seconds
+            Thread.Sleep(2000);
+
         }
     }
 }

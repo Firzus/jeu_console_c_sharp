@@ -14,29 +14,29 @@ namespace console_app
         public static void menu()
         {
 
-            string start = @" 
-                     ___ _            _   
-                    / __| |_ __ _ _ _| |_ 
-                    \__ \  _/ _` | '_|  _|
-                    |___/\__\__,_|_|  \__|";
+            string play = @"
+                      ___ _       __  __
+                     | _ \ | __ _ \ \/ /
+                     | ,_/ |/ _` |_\  / 
+                     |_| |_|\__,_|___/  ";
 
-            string[] linesStart = start.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-            int longestLengthStart = linesStart.Max(line => line.Length);
-            string leadingSpacesStart = new string(' ', longestLengthStart);
-            string startBlock = string.Join(Environment.NewLine, linesStart.Select(line => leadingSpacesStart + line));
+            string[] linesPlay = play.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            int longestLengthPlay = linesPlay.Max(line => line.Length);
+            string leadingSpacesPlay = new string(' ', longestLengthPlay);
+            string playBlock = string.Join(Environment.NewLine, linesPlay.Select(line => leadingSpacesPlay + line));
 
-            string save = @" 
-                     ___               
-                    / __| __ ___ _____ 
-                    \__ \/ _` \ V / -_)
-                    |___/\__,_|\_/\___|";
+            string save = @"
+                      ___               
+                     / __| __ ___ _____ 
+                     \__ \/ _` \ V / -_)
+                     |___/\__,_|\_/\___|";
 
             string[] linesSave = save.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
             int longestLengthSave = linesSave.Max(line => line.Length);
             string leadingSpacesSave = new string(' ', longestLengthSave);
             string saveBlock = string.Join(Environment.NewLine, linesSave.Select(line => leadingSpacesSave + line));
 
-            string load = @" 
+            string load = @"
                      _                 _ 
                     | |   ___  __ _ __| |
                     | |__/ _ \/ _` / _` |
@@ -48,7 +48,7 @@ namespace console_app
             string loadBlock = string.Join(Environment.NewLine, linesLoad.Select(line => leadingSpacesLoad + line));
 
 
-            int selectedClass = Menu.MultipleChoice(startBlock, saveBlock, loadBlock);
+            int selectedClass = Menu.MultipleChoice(playBlock, saveBlock, loadBlock);
 
             switch (selectedClass)
             {
@@ -132,7 +132,8 @@ namespace console_app
                 switch (currentPosition)
                 {
                     case 0:
-                        Map.drawMap();
+                        Map map = new Map();
+                        map.drawMap();
                         break;
                     case 1:
                         return -1;
@@ -141,9 +142,10 @@ namespace console_app
                         return -1;
                         //break;
                 }
-            } 
+            }
 
-            return currentPosition;
+            //return currentPosition;
+            throw new NotImplementedException();
         }
     }
 }
