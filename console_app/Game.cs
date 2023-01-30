@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+
 using console_app;
 
 namespace YOURNAMESPACE
@@ -10,7 +11,10 @@ namespace YOURNAMESPACE
         static void Main()
         {
             ConsoleManager.WindowSetup();
-            Map.DrawMap();
+            /*Map.DrawMap();*/
+
+            // fight
+            Fight.FightLoop();
         }
     }
 }
