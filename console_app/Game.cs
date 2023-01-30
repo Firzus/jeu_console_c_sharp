@@ -10,7 +10,7 @@ namespace YOURNAMESPACE
         static void Main()
         {
             ConsoleManager.WindowSetup();
-            Map.drawMap();
+            Map.DrawMap();
         }
     }
 }
