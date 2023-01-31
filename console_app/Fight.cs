@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using console_app.Pokemons;
+using console_app.Team;
 
 namespace console_app
 {
@@ -13,7 +14,7 @@ namespace console_app
         static private bool m_isPLayerInitiator;
         static private int m_tour;
 
-        public static void FightLoop()
+        public static void FightScene()
         {
             // creation des pokemons
             Carapuce carapuce = new Carapuce();

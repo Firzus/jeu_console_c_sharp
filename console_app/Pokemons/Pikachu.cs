@@ -51,11 +51,6 @@ namespace console_app.Pokemons
             return m_vie <= 0;
         }
 
-        public void TakeVial()
-        {
-            Vial potion= new Vial();
-        }
-
         public float GetSpeed()
         {
             return m_speed;

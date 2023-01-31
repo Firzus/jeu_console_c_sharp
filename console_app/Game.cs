@@ -14,7 +14,7 @@ namespace YOURNAMESPACE
             /*Map.DrawMap();*/
 
             // fight
-            Fight.FightLoop();
+            Fight.FightScene();
         }
     }
 }
