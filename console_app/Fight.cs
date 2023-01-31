@@ -11,8 +11,8 @@ namespace console_app
 {
     internal class Fight
     {
-        static private bool m_isPLayerInitiator;
-        static private int m_tour;
+        static private bool m_isPlayerInitiator;
+        static private string m_tour = "whoStart";
 
         public static void FightScene()
         {
@@ -25,64 +25,72 @@ namespace console_app
             // determine le premier
             if (pikachu.GetSpeed() > carapuce.GetSpeed())
             {
-                m_isPLayerInitiator = true;
+                m_isPlayerInitiator = true;
             }
-            if(pikachu.GetSpeed() < carapuce.GetSpeed())
+            else if(pikachu.GetSpeed() < carapuce.GetSpeed())
             {
-                m_isPLayerInitiator = false;
+                m_isPlayerInitiator = false;
             }
             else
             {
-                // si egalité -> random choice
+                Random random = new Random();
+                m_isPlayerInitiator = random.Next(0, 2) == 0 ? false : true;
             }
 
             // tant que tout les pokemons sont en vie
-            while (!pikachu.IsDead() || !carapuce.IsDead())
+            while (pikachu.IsAlive() && carapuce.IsAlive())
             {
                 // boucle de tours
                 switch (m_tour)
                 {
-                    case 1:
+                    case "tourImpair":
+
+                        Console.WriteLine("Pikachu attaque éclair");
                         pikachu.Attack(carapuce); //pikachu attaque carapuce
                         carapuce.Infos();
-                        m_tour = 2;
+
+                        m_tour = "tourPair";
+
                         break;
 
-                    case 2:
+                    case "tourPair":
+
+                        Console.WriteLine("Carapuce à toi de jouer, gogogo !");
                         carapuce.Attack(pikachu); //carapuce attaque pikachu
                         pikachu.Infos();
-                        m_tour = 1;
+
+                        m_tour = "tourImpair";
+
                         break;
 
-                    default:
-                        if (m_isPLayerInitiator)
+                    case "whoStart":
+
+                        if (m_isPlayerInitiator)
                         {
-                            m_tour = 1;
+                            m_tour = "tourImpair";
                         }
-                        if (!m_isPLayerInitiator)
+                        if (!m_isPlayerInitiator)
                         {
-                            m_tour = 2;
+                            m_tour = "tourPair";
                         }
+
                         break;
                 }
             }
 
-            if(pikachu.IsDead())
+            if (!pikachu.IsAlive())
             {
                 Console.WriteLine("Vous êtes KO");
             }
-            if (carapuce.IsDead())
+            if (!carapuce.IsAlive())
             {
                 Console.WriteLine("Vous avez gagné !");
             }
 
             /* DEBUG */
 
-            if (true)
-            {
-                //display speed test
-                //Console.WriteLine(carapuce.GetSpeed());
-            }
+            //display speed test
+            //Console.WriteLine(carapuce.GetSpeed());
 
             /* DEBUG */
         }

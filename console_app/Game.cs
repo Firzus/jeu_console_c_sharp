@@ -2,6 +2,7 @@
 using System.Runtime.Versioning;
 
 using console_app;
+using console_app.Team;
 
 namespace YOURNAMESPACE
 {
@@ -14,7 +15,8 @@ namespace YOURNAMESPACE
             /*Map.DrawMap();*/
 
             // fight
-            Fight.FightScene();
+            /*Fight.FightScene();*/
+            TeamPlayer.SetStarter();
         }
     }
 }

@@ -10,8 +10,8 @@ namespace console_app.Pokemons
 {
     internal class Carapuce
     {
-        private float m_vie = 70.0f;
-        private float m_degats = 40.0f;
+        private float m_vie = 50.0f;
+        private float m_degats = 20.0f;
         private float m_speed = 50.0f;
 
         // pokemon de base
@@ -35,14 +35,14 @@ namespace console_app.Pokemons
             cible.TakeDamage((1 - m_defence / 100) * m_degats);
         }
 
-        public bool IsDead()
+        public bool IsAlive()
         {
-            return m_vie <= 0;
+            return m_vie > 0;
         }
 
         public void Infos()
         {
-            Console.WriteLine("Vie: " + m_vie);
+            Console.WriteLine("Vie Carapuce: " + m_vie);
         }
 
         public void TakeVial()

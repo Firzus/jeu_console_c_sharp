@@ -25,7 +25,7 @@ namespace console_app.Pokemons
             m_level = 5;
             m_vie = 50.0f;
             m_degats = 20.0f;
-            m_speed = 20.0f;
+            m_speed = 30.0f;
 
             // varie de 0 à 100 (exemple : 50 = 50% de résitance)
             m_defence = 10.0f;
@@ -46,9 +46,9 @@ namespace console_app.Pokemons
             cible.TakeDamage((1 - m_defence / 100) * m_degats);
         }
 
-        public bool IsDead()
+        public bool IsAlive()
         {
-            return m_vie <= 0;
+            return m_vie > 0;
         }
 
         public float GetSpeed()
@@ -70,7 +70,7 @@ namespace console_app.Pokemons
 
         public void Infos()
         {
-            Console.WriteLine("Vie: " + m_vie);
+            Console.WriteLine("Vie Pikachu: " + m_vie);
         }
 
         /*DEBUG*/
