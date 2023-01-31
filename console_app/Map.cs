@@ -34,6 +34,7 @@ namespace console_app
             Console.Clear();
 
             for (int j = 0; j < _map.GetLength(1); j++)
+
             {
                 for (int i = 0; i < _map.GetLength(0); i++)
                 {
