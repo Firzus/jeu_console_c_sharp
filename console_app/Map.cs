@@ -12,7 +12,7 @@ namespace console_app
 
         public Map()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map.txt");
+            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map1.txt");
             _map = new char[lines[1].Count(), lines.GetLength(0)];
 
             int x = 0, y = 0;
@@ -39,33 +39,9 @@ namespace console_app
                 {
                     switch (_map[i, j])
                     {
-                        case '*':
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
-                            Console.BackgroundColor = ConsoleColor.DarkGray;
-                            break;
-                        case ',':
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
-                            Console.BackgroundColor = ConsoleColor.DarkGray;
-                            break;
-                        case '.':
-                            Console.ForegroundColor = ConsoleColor.DarkBlue;
-                            Console.BackgroundColor = ConsoleColor.DarkBlue;
-                            break;
-                        case '/':
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.BackgroundColor = ConsoleColor.Blue;
-                            break;
-                        case '(':
-                            Console.ForegroundColor = ConsoleColor.DarkCyan;
-                            Console.BackgroundColor = ConsoleColor.DarkCyan;
-                            break;
-                        case '&':
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.BackgroundColor = ConsoleColor.White;
-                            break;
                         case '%':
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.BackgroundColor = ConsoleColor.Cyan;
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.BackgroundColor = ConsoleColor.Green;
                             break;
                         case '#':
                             Console.ForegroundColor = ConsoleColor.Gray;

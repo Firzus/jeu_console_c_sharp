@@ -48,26 +48,10 @@ namespace console_app
             string loadBlock = string.Join(Environment.NewLine, linesLoad.Select(line => leadingSpacesLoad + line));
 
 
-            int selectedClass = Menu.MultipleChoice(playBlock, saveBlock, loadBlock);
-
-            switch (selectedClass)
-            {
-                case 0:
-                    Console.Clear();
-                    Console.WriteLine("0");
-                    break;
-                case 1:
-                    Console.Clear();
-                    Console.WriteLine("1");
-                    break;
-                case 2:
-                    Console.Clear();
-                    Console.WriteLine("2");
-                    break;
-            }
+            MultipleChoice(playBlock, saveBlock, loadBlock);
         }
 
-        public static int MultipleChoice(params string[] options)
+        public static void MultipleChoice(params string[] options)
         {
             int currentPosition = 0;
 
@@ -93,7 +77,7 @@ namespace console_app
                         }
                         break;
                     case ConsoleKey.Escape:
-                        return -1;
+                        return;
                 }
 
                 // Draw
@@ -136,16 +120,11 @@ namespace console_app
                         map.drawMap();
                         break;
                     case 1:
-                        return -1;
-                        //break;
+                        return;
                     case 2:
-                        return -1;
-                        //break;
+                        return;
                 }
             }
-
-            //return currentPosition;
-            throw new NotImplementedException();
         }
     }
 }
