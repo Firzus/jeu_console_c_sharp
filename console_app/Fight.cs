@@ -16,18 +16,14 @@ namespace console_app
 
         public static void FightScene()
         {
-            // creation des pokemons
-            Carapuce carapuce = new Carapuce();
-            Pikachu pikachu = new Pikachu();
-
-            Console.WriteLine("Un " + pikachu.GetName() + " sauvage apparait !");
+            Console.WriteLine("Un " + Pikachu.GetName() + " sauvage apparait !");
 
             // determine le premier
-            if (pikachu.GetSpeed() > carapuce.GetSpeed())
+            if (Pikachu.GetSpeed() > Tetunel.GetSpeed())
             {
                 m_isPlayerInitiator = true;
             }
-            else if(pikachu.GetSpeed() < carapuce.GetSpeed())
+            else if(Pikachu.GetSpeed() < Tetunel.GetSpeed())
             {
                 m_isPlayerInitiator = false;
             }
@@ -38,7 +34,7 @@ namespace console_app
             }
 
             // tant que tout les pokemons sont en vie
-            while (pikachu.IsAlive() && carapuce.IsAlive())
+            while (Pikachu.IsAlive() && Tetunel.IsAlive())
             {
                 // boucle de tours
                 switch (m_tour)
@@ -46,8 +42,8 @@ namespace console_app
                     case "tourImpair":
 
                         Console.WriteLine("Pikachu attaque éclair");
-                        pikachu.Attack(carapuce); //pikachu attaque carapuce
-                        carapuce.Infos();
+                        /*Pikachu.Attack(Carapuce); //pikachu attaque carapuce*/
+                        Tetunel.Infos();
 
                         m_tour = "tourPair";
 
@@ -56,8 +52,8 @@ namespace console_app
                     case "tourPair":
 
                         Console.WriteLine("Carapuce à toi de jouer, gogogo !");
-                        carapuce.Attack(pikachu); //carapuce attaque pikachu
-                        pikachu.Infos();
+                        /*Carapuce.Attack(Pikachu); //carapuce attaque pikachu*/
+                        Pikachu.Infos();
 
                         m_tour = "tourImpair";
 
@@ -78,21 +74,14 @@ namespace console_app
                 }
             }
 
-            if (!pikachu.IsAlive())
+            if (!Pikachu.IsAlive())
             {
-                Console.WriteLine("Vous êtes KO");
+                Console.WriteLine("Vous êtes KO !");
             }
-            if (!carapuce.IsAlive())
+            if (!Tetunel.IsAlive())
             {
                 Console.WriteLine("Vous avez gagné !");
             }
-
-            /* DEBUG */
-
-            //display speed test
-            //Console.WriteLine(carapuce.GetSpeed());
-
-            /* DEBUG */
         }
     }
 }

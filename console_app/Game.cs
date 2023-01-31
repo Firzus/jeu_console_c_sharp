@@ -17,6 +17,8 @@ namespace YOURNAMESPACE
             // fight
             /*Fight.FightScene();*/
             TeamPlayer.SetStarter();
+
+            TeamPlayer.SetTeamComposition();
         }
     }
 }
