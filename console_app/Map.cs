@@ -1,58 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace console_app
 {
     internal class Map
     {
-        public static void DrawMap()
+        char[,] _map;
+
+        public Map()
         {
+            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map1.txt");
+            _map = new char[lines[1].Count(), lines.GetLength(0)];
 
-            string[] map = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map.txt");
-            System.Console.Write(map);
+            int x = 0, y = 0;
 
-            /* // modeling map
-             string[] map =
-             {
-                 "   ┌─────────────────────────────────────┐",
-                 "   │#####################################│",
-                 "   │##############     ############### ##│",
-                 "   │############    !  %%%%  #####  #   #│",
-                 "   │###########        %%%%             @│",
-                 "   │#######            %%%%              │",
-                 "   │#####              ####      ##### ##│",
-                 "   │@  ###          ########     ########│",
-                 "   │#              ##########      ######│",
-                 "   │#              ##############     ###│",
-                 "   │###           ####%%%#########    &&#│",
-                 "   │####              %%%##########   &&#│",
-                 "   │#############       ##############&&#│",
-                 "   │##############     ##################│",
-                 "   │#####################################│",
-                 "   └─────────────────────────────────────┘"    
-             };
+            foreach (string line in lines)
+            {
+                x = 0;
+                foreach (char c in line)
+                {
+                    _map[x, y] = c;
+                    x++;
+                }
+                y++;
+            }
+        }
 
-             // modeling character
-             string character = "?";
+        public void drawMap()
+        {
+            Console.Clear();
 
-             // modeling zap
-             string zap = "*";
+            for (int j = 0; j < _map.GetLength(1); j++)
 
-             // display map
-             for (int y = 0; y < map.Length; y++)
-             {
-                 for (int x = 0; x < map[y].Length; x++)
-                 {
-                     char title = map[y][x];
-                     Console.Write(title);
-                 }
-                 Console.WriteLine();
-        }*/
+            {
+                for (int i = 0; i < _map.GetLength(0); i++)
+                {
+                    switch (_map[i, j])
+                    {
+                        case '%':
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.BackgroundColor = ConsoleColor.Green;
+                            break;
+                        case '#':
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            break;
+                    }
+                    Console.Write(_map[i, j]);
+                }
+                Console.WriteLine();
+            }
+
+            // Sleep for 2 seconds
+            Thread.Sleep(2000);
+
+
+        public void drawPlayer()
+        {
+                Console.Clear();
+                for (int j = 0; j < _map.GetLength(1); j++)
+
+                {
+                    for (int i = 0; i < _map.GetLength(0); i++)
+                    {
+                        switch (_map[i, j])
+                        {
+                            case '%':
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.BackgroundColor = ConsoleColor.Green;
+       
+                                break;
+
+                        }
+
+                    }
         }
     }
 }
