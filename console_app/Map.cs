@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +11,9 @@ namespace console_app
     internal class Map
     {
         char[,] _map;
+
+        int m_playerX = 14 , m_playerY = 11;
+
 
         public Map()
         {
@@ -29,15 +34,27 @@ namespace console_app
             }
         }
 
-        public void drawMap()
+
+        public void DrawMap()
         {
             Console.Clear();
+            
 
             for (int j = 0; j < _map.GetLength(1); j++)
-
             {
                 for (int i = 0; i < _map.GetLength(0); i++)
                 {
+                    if (m_playerY == i && m_playerX == j)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.Write(_map[i, j]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        continue;
+                    }
+
+
                     switch (_map[i, j])
                     {
                         case '%':
@@ -58,8 +75,35 @@ namespace console_app
                 Console.WriteLine();
             }
 
-            // Sleep for 2 seconds
-            Thread.Sleep(2000);
+
+        }
+        public void Move()
+        {
+            ConsoleKeyInfo key;
+            key = Console.ReadKey() ;
+            switch (key.Key)
+            {
+                case ConsoleKey.S:         
+                    m_playerX += 1;
+                    DrawMap();
+                    break;
+
+                case ConsoleKey.Z:
+                    m_playerX -= 1;
+                    DrawMap();
+                    break;
+
+                case ConsoleKey.D:
+                    m_playerY += 1;
+                    DrawMap();
+                    break;
+
+                case ConsoleKey.Q:
+                    m_playerY -= 1;
+                    DrawMap();
+                    break;
+            }
+
 
         }
     }

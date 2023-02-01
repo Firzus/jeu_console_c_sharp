@@ -9,10 +9,30 @@ namespace YOURNAMESPACE
     {
         static void Main()
         {
+            bool Play = true;
+            bool Isdraw = false;
+
             ConsoleManager.WindowSetup();
 
+            Map map = new Map();
             Intro intro= new Intro();
-            intro.drawIntro();
+            while(Play == true)
+            {
+                if(Isdraw == false)
+                {
+                   intro.drawIntro();
+                   map.DrawMap();
+                   Isdraw= true;
+                }
+                
+                map.Move();
+                
+                
+               /* if(Console.CancelKeyPress)
+                {
+                    play = false;
+                }*/
+            }
         }
     }
 }
