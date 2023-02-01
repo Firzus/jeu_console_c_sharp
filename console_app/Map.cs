@@ -64,6 +64,7 @@ namespace console_app
                                 continue;
                             }
                         }
+
                         // Objets
                         else if (_map[i, j] == '!')
                         {
