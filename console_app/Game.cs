@@ -9,15 +9,21 @@ namespace YOURNAMESPACE
     {
         static void Main()
         {
-            bool play = true;
+            bool Play = true;
+            bool Isdraw = false;
 
             ConsoleManager.WindowSetup();
-
-            while(play == true)
+            Map map = new Map();
+            while(Play == true)
             {
-                Map map = new Map();
-                map.DrawMap();
-                //map.DrawPlayer();
+                if(Isdraw == false)
+                {
+                   map.DrawMap();
+                   Isdraw= true;
+                }
+                
+                map.Move();
+                
                 
                /* if(Console.CancelKeyPress)
                 {

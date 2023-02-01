@@ -11,7 +11,8 @@ namespace console_app
     internal class Map
     {
         char[,] _map;
-
+        int m_playerX = 14 , m_playerY = 11;
+ 
         public Map()
         {
 
@@ -19,6 +20,7 @@ namespace console_app
             _map = new char[lines[1].Count(), lines.GetLength(0)];
 
             int x, y = 0;
+            
 
             foreach (string line in lines)
             {
@@ -35,20 +37,20 @@ namespace console_app
         public void DrawMap()
         {
             Console.Clear();
-            int playerx = 11, playery = 14;
+            
 
             for (int j = 0; j < _map.GetLength(1); j++)
             {
                 for (int i = 0; i < _map.GetLength(0); i++)
                 {
-                    if (playery == i && playerx == j)
+                    if (m_playerY == i && m_playerX == j)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.Write(_map[i, j]);
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
-
+                        continue;
                     }
 
                     switch (_map[i, j])
@@ -71,30 +73,33 @@ namespace console_app
                 Console.WriteLine();
             }
 
-            // Sleep for 2 seconds
-            Thread.Sleep(2000);
-
         }
-        /*
-        public void DrawPlayer() {
-
-            int playerx = 11, playery = 14;
-
-            for (int j = 0; j < _map.GetLength(1); j++)
+        public void Move()
+        {
+            ConsoleKeyInfo key;
+            key = Console.ReadKey() ;
+            switch (key.Key)
             {
-                for (int i = 0; i < _map.GetLength(0); i++)
-                {
-                    if(playery == i && playerx == j)
-                    {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.BackgroundColor = ConsoleColor.Red;
-                            Console.Write(_map[i, j]);
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.BackgroundColor = ConsoleColor.Black;
+                case ConsoleKey.S:         
+                    m_playerX += 1;
+                    DrawMap();
+                    break;
 
-                    }
-                }
+                case ConsoleKey.Z:
+                    m_playerX -= 1;
+                    DrawMap();
+                    break;
+
+                case ConsoleKey.D:
+                    m_playerY += 1;
+                    DrawMap();
+                    break;
+
+                case ConsoleKey.Q:
+                    m_playerY -= 1;
+                    DrawMap();
+                    break;
             }
-        }*/
+        }
     }
 }
