@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace console_app
 {
-    internal class Map
+    public class Map
     {
         char[,] _map;
 
@@ -105,6 +105,34 @@ namespace console_app
             }
 
 
+        }
+
+        public void TheWorld()
+        {
+            var rand = new Random();
+
+            for (int j = 0; j < _map.GetLength(1); j++)
+            {
+                for (int i = 0; i < _map.GetLength(0); i++)
+                {
+                    switch (_map[i, j])
+                    {
+                        case '%':
+                            int chance =rand.Next(0, 4);
+                            if (chance < 2)
+                            {
+                                //Combat combat = new Combat();
+                                //combat.drawCombat();
+                                break;
+                            }
+                            break;
+                        case '!':
+                            //Object object = new Object();
+                            //object.AddObject();
+                            break;
+                    }
+                }
+            }
         }
     }
 }
