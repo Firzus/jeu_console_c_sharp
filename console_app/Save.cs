@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Save
 {
-    public class WeatherForecast
+    public class Données
     {
         public DateTimeOffset Date { get; set; }
         public int TemperatureCelsius { get; set; }
@@ -18,15 +18,15 @@ namespace Save
     {
         public Save()
         {
-            var weatherForecast = new WeatherForecast
+            var données = new Données
             {
                 Date = DateTime.Parse("2019-08-01"),
                 TemperatureCelsius = 25,
                 Summary = "Hot"
             };
 
-            string fileName = "WeatherForecast.json";
-            string jsonString = JsonSerializer.Serialize(weatherForecast);
+            string fileName = "Save.json";
+            string jsonString = JsonSerializer.Serialize(données);
             File.WriteAllText(fileName, jsonString);
 
             Console.WriteLine(File.ReadAllText(fileName));
