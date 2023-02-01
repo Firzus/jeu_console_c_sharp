@@ -13,11 +13,14 @@ namespace YOURNAMESPACE
             bool Isdraw = false;
 
             ConsoleManager.WindowSetup();
+
             Map map = new Map();
+            Intro intro= new Intro();
             while(Play == true)
             {
                 if(Isdraw == false)
                 {
+                   intro.drawIntro();
                    map.DrawMap();
                    Isdraw= true;
                 }
@@ -30,7 +33,6 @@ namespace YOURNAMESPACE
                     play = false;
                 }*/
             }
-            
         }
     }
 }

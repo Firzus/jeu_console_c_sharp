@@ -11,16 +11,16 @@ namespace console_app
     internal class Map
     {
         char[,] _map;
+
         int m_playerX = 14 , m_playerY = 11;
- 
+
+
         public Map()
         {
-
-            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map.txt");
+            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map1.txt");
             _map = new char[lines[1].Count(), lines.GetLength(0)];
 
-            int x, y = 0;
-            
+            int x = 0, y = 0;
 
             foreach (string line in lines)
             {
@@ -33,6 +33,7 @@ namespace console_app
                 y++;
             }
         }
+
 
         public void DrawMap()
         {
@@ -53,6 +54,7 @@ namespace console_app
                         continue;
                     }
 
+
                     switch (_map[i, j])
                     {
                         case '%':
@@ -72,6 +74,7 @@ namespace console_app
                 }
                 Console.WriteLine();
             }
+
 
         }
         public void Move()
@@ -100,6 +103,8 @@ namespace console_app
                     DrawMap();
                     break;
             }
+
+
         }
     }
 }

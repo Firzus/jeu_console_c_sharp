@@ -12,7 +12,7 @@ namespace console_app
 
         public Intro()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Logo1.txt");
+            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Logo.txt");
             _logo = new char[lines[1].Count(), lines.GetLength(0)];
 
             int x = 0, y = 0;
@@ -31,48 +31,42 @@ namespace console_app
 
         public void drawIntro()
         {
-            /*
-            string[] linesLogo = logo.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-            int longestLengthLogo = linesLogo.Max(line => line.Length);
-            string leadingSpacesLogo = new string(' ', longestLengthLogo);
-            string logoblock = string.Join(Environment.NewLine, linesLogo.Select(line => leadingSpacesLogo + line));
-            */
 
             for (int j = 0; j < _logo.GetLength(1); j++)
             {
                 for (int i = 0; i < _logo.GetLength(0); i++)
                 {
-                    switch(_logo[i, j])
+                    switch (_logo[i, j])
                     {
-                        case'*':
+                        case '*':
                             Console.ForegroundColor = ConsoleColor.DarkGray;
                             Console.BackgroundColor = ConsoleColor.DarkGray;
                             break;
-                        case',':
+                        case ';':
                             Console.ForegroundColor = ConsoleColor.DarkGray;
                             Console.BackgroundColor = ConsoleColor.DarkGray;
                             break;
-                        case'.':
+                        case '.':
                             Console.ForegroundColor = ConsoleColor.DarkBlue;
                             Console.BackgroundColor = ConsoleColor.DarkBlue;
                             break;
-                        case'/':
+                        case '}':
                             Console.ForegroundColor = ConsoleColor.Blue;
                             Console.BackgroundColor = ConsoleColor.Blue;
                             break;
-                        case'(':
+                        case '(':
                             Console.ForegroundColor = ConsoleColor.DarkCyan;
                             Console.BackgroundColor = ConsoleColor.DarkCyan;
                             break;
-                        case'&':
+                        case '&':
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.BackgroundColor = ConsoleColor.White;
                             break;
-                        case'%':
+                        case '%':
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.BackgroundColor = ConsoleColor.Cyan;
                             break;
-                        case'#':
+                        case '#':
                             Console.ForegroundColor = ConsoleColor.Gray;
                             Console.BackgroundColor = ConsoleColor.Gray;
                             break;
@@ -85,6 +79,11 @@ namespace console_app
                 }
                 Console.WriteLine();
             }
+
+            // Sleep for 2 seconds
+            Thread.Sleep(2000);
+
+            Menu.menu();
         }
     }
 }

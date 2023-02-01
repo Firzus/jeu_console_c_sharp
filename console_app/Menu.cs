@@ -9,37 +9,34 @@ namespace console_app
 {
     internal class Menu
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Icon { get; set; }
 
 
         public static void menu()
         {
-            string start = @" 
-                     ___ _            _   
-                    / __| |_ __ _ _ _| |_ 
-                    \__ \  _/ _` | '_|  _|
-                    |___/\__\__,_|_|  \__|";
 
-            string[] linesStart = start.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-            int longestLengthStart = linesStart.Max(line => line.Length);
-            string leadingSpacesStart = new string(' ', longestLengthStart);
-            string startBlock = string.Join(Environment.NewLine, linesStart.Select(line => leadingSpacesStart + line));
+            string play = @"
+                      ___ _       __  __
+                     | _ \ | __ _ \ \/ /
+                     | ,_/ |/ _` |_\  / 
+                     |_| |_|\__,_|___/  ";
 
-            string save = @" 
-                     ___               
-                    / __| __ ___ _____ 
-                    \__ \/ _` \ V / -_)
-                    |___/\__,_|\_/\___|";
+            string[] linesPlay = play.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            int longestLengthPlay = linesPlay.Max(line => line.Length);
+            string leadingSpacesPlay = new string(' ', longestLengthPlay);
+            string playBlock = string.Join(Environment.NewLine, linesPlay.Select(line => leadingSpacesPlay + line));
+
+            string save = @"
+                      ___               
+                     / __| __ ___ _____ 
+                     \__ \/ _` \ V / -_)
+                     |___/\__,_|\_/\___|";
 
             string[] linesSave = save.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
             int longestLengthSave = linesSave.Max(line => line.Length);
             string leadingSpacesSave = new string(' ', longestLengthSave);
             string saveBlock = string.Join(Environment.NewLine, linesSave.Select(line => leadingSpacesSave + line));
 
-            string load = @" 
+            string load = @"
                      _                 _ 
                     | |   ___  __ _ __| |
                     | |__/ _ \/ _` / _` |
@@ -50,79 +47,84 @@ namespace console_app
             string leadingSpacesLoad = new string(' ', longestLengthLoad);
             string loadBlock = string.Join(Environment.NewLine, linesLoad.Select(line => leadingSpacesLoad + line));
 
-            //Console.Clear();
-            Console.WriteLine(start);
-            Console.WriteLine(save);
-            Console.WriteLine(load);
 
-            /*
-            int selectedClass = Menu.MultipleChoice(startBlock, saveBlock, loadBlock);
-
-            switch (selectedClass)
-            {
-                case 0:
-                    Console.Clear();
-                    Console.WriteLine("0");
-                    break;
-                case 1:
-                    Console.Clear();
-                    Console.WriteLine("1");
-                    break;
-                case 2:
-                    Console.Clear();
-                    Console.WriteLine("2");
-                    break;
-            }*/
+            MultipleChoice(playBlock, saveBlock, loadBlock);
         }
 
-        public static int MultipleChoice(params string[] options)
+        public static void MultipleChoice(params string[] options)
         {
-            const int startY = 0;
+            int currentPosition = 0;
 
-            int currentSelection = 0;
-
-            ConsoleKey key;
-
-            Console.CursorVisible = false;
-
+            ConsoleKey key = ConsoleKey.UpArrow;
             do
             {
-                Console.Clear();
-
-                for (int i = 0; i < options.Length; i++)
-                {
-                    Console.SetCursorPosition((i % 1)*5, (startY + i)*6);
-                    if (i == currentSelection)
-
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(options[i]);
-
-                    Console.ResetColor();
-                }
-
-                key = Console.ReadKey(true).Key;
-
+                // Get Input
+                key = Console.ReadKey().Key;
+                
+                // Update
                 switch (key)
                 {
-                    case ConsoleKey.LeftArrow:
-                        if (currentSelection > 0)
+                    case ConsoleKey.DownArrow:
+                        if (currentPosition < 2)
                         {
-                            currentSelection--;
+                            currentPosition++;
                         }
                         break;
-                    case ConsoleKey.RightArrow:
-                        if (currentSelection < 0) {
-                                currentSelection++;
+                    case ConsoleKey.UpArrow:
+                        if (currentPosition > 0)
+                        {
+                            currentPosition--;
                         }
                         break;
                     case ConsoleKey.Escape:
-                        return -1;
+                        return;
                 }
+
+                // Draw
+                switch (currentPosition)
+                {
+                    case 0:
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(options[0]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(options[1]);
+                        Console.WriteLine(options[2]);
+                        break;
+                    case 1:
+                        Console.Clear();
+                        Console.WriteLine(options[0]);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(options[1]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(options[2]);
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine(options[0]);
+                        Console.WriteLine(options[1]);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(options[2]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                }
+
             } while (key != ConsoleKey.Enter);
 
-            Console.CursorVisible = true;
-
-            return currentSelection;
+            if (key == ConsoleKey.Enter)
+            {
+                switch (currentPosition)
+                {
+                    case 0:
+                        Map map = new Map();
+                        map.drawMap();
+                        break;
+                    case 1:
+                        return;
+                    case 2:
+                        return;
+                }
+            }
         }
     }
 }
