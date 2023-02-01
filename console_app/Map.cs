@@ -12,7 +12,7 @@ namespace console_app
     {
         char[,] _map;
 
-        int m_playerX = 14 , m_playerY = 11;
+        int m_playerX = 14, m_playerY = 11;
 
 
         public Map()
@@ -38,12 +38,13 @@ namespace console_app
         public void DrawMap()
         {
             Console.Clear();
-            
+            var rand = new Random();
 
             for (int j = 0; j < _map.GetLength(1); j++)
             {
                 for (int i = 0; i < _map.GetLength(0); i++)
                 {
+                    // Joueur
                     if (m_playerY == i && m_playerX == j)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -51,10 +52,29 @@ namespace console_app
                         Console.Write(_map[i, j]);
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
+
+                        // Hautes herbes
+                        if (_map[i, j] == '%')
+                        {
+                            int chance = rand.Next(5);
+                            if (chance < 2)
+                            {
+                                //Combat combat = new Combat();
+                                //combat.drawCombat();
+                                continue;
+                            }
+                        }
+                        // Objets
+                        else if (_map[i, j] == '!')
+                        {
+                            //Object object = new Object();
+                            //object.AddObject();
+                        }
+
                         continue;
                     }
 
-
+                    // Carte
                     switch (_map[i, j])
                     {
                         case '%':
@@ -80,10 +100,10 @@ namespace console_app
         public void Move()
         {
             ConsoleKeyInfo key;
-            key = Console.ReadKey() ;
+            key = Console.ReadKey();
             switch (key.Key)
             {
-                case ConsoleKey.S:         
+                case ConsoleKey.S:
                     m_playerX += 1;
                     DrawMap();
                     break;
@@ -102,36 +122,6 @@ namespace console_app
                     m_playerY -= 1;
                     DrawMap();
                     break;
-            }
-
-
-        }
-
-        public void TheWorld()
-        {
-            var rand = new Random();
-
-            for (int j = 0; j < _map.GetLength(1); j++)
-            {
-                for (int i = 0; i < _map.GetLength(0); i++)
-                {
-                    switch (_map[i, j])
-                    {
-                        case '%':
-                            int chance =rand.Next(0, 4);
-                            if (chance < 2)
-                            {
-                                //Combat combat = new Combat();
-                                //combat.drawCombat();
-                                break;
-                            }
-                            break;
-                        case '!':
-                            //Object object = new Object();
-                            //object.AddObject();
-                            break;
-                    }
-                }
             }
         }
     }
