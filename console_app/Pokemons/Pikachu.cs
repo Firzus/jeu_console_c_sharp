@@ -11,13 +11,20 @@ namespace console_app.Pokemons
     internal class Pikachu
     {
         static private string m_name = "Pikachu";
-        static private bool m_isStarter = true;
-        static private float m_vie = 50.0f;
-        static private float m_degats = 20.0f;
-        static private float m_speed = 30.0f;
-        static private float m_defence = 10.0f; // varie de 0 à 100 , 50 = 50% de res
+        private bool m_isStarter = false;
+        static private bool m_isSelected = false;
+        private float m_vie = 50.0f;
+        private float m_degats = 20.0f;
+        private float m_speed = 30.0f;
+        // varie de 0 à 100 , 50 = 50% de res
+        private float m_defence = 10.0f;
 
-        static public void TakeDamage(float nbDegats)
+        static public Pikachu Create()
+        {
+            return new Pikachu();
+        }
+
+        public void TakeDamage(float nbDegats)
         {
             m_vie -= nbDegats;
 
@@ -27,22 +34,22 @@ namespace console_app.Pokemons
             }
         }
 
-        static public float Attack()
+        public void Attack(Tetunel cible)
         {
-            return (1 - m_defence / 100) * m_degats;
+            cible.TakeDamage((1 - m_defence / 100) * m_degats);
         }
 
-        static public bool IsAlive()
+        public bool IsAlive()
         {
             return m_vie > 0;
         }
 
-        static public float GetSpeed()
+        public float GetSpeed()
         {
             return m_speed;
         }
 
-        static public bool GetStarter()
+        public bool GetStarter()
         {
             return m_isStarter;
         }
@@ -52,9 +59,14 @@ namespace console_app.Pokemons
             return m_name;
         }
 
+        static public bool IsSelected()
+        {
+            return m_isSelected;
+        }
+
         /*DEBUG*/
 
-        static public void Infos()
+        public void Infos()
         {
             Console.WriteLine("Vie Pikachu: " + m_vie);
         }

@@ -16,14 +16,19 @@ namespace console_app
 
         public static void FightScene()
         {
+            Pikachu pikachu = Pikachu.Create();
+            Tetunel tetunel = Tetunel.Create();
+
+            TeamPlayer teamPlayer = TeamPlayer.Create();
+
             Console.WriteLine("Un " + Pikachu.GetName() + " sauvage apparait !");
 
             // determine le premier
-            if (Pikachu.GetSpeed() > Tetunel.GetSpeed())
+            if (pikachu.GetSpeed() > tetunel.GetSpeed())
             {
                 m_isPlayerInitiator = true;
             }
-            else if(Pikachu.GetSpeed() < Tetunel.GetSpeed())
+            else if(pikachu.GetSpeed() < tetunel.GetSpeed())
             {
                 m_isPlayerInitiator = false;
             }
@@ -34,7 +39,7 @@ namespace console_app
             }
 
             // tant que tout les pokemons sont en vie
-            while (Pikachu.IsAlive() && Tetunel.IsAlive())
+            while (pikachu.IsAlive() && tetunel.IsAlive())
             {
                 // boucle de tours
                 switch (m_tour)
@@ -42,8 +47,8 @@ namespace console_app
                     case "tourImpair":
 
                         Console.WriteLine("Pikachu attaque éclair");
-                        /*Pikachu.Attack(Carapuce); //pikachu attaque carapuce*/
-                        Tetunel.Infos();
+                        pikachu.Attack(tetunel); //pikachu attaque carapuce
+                        tetunel.Infos();
 
                         m_tour = "tourPair";
 
@@ -53,7 +58,7 @@ namespace console_app
 
                         Console.WriteLine("Carapuce à toi de jouer, gogogo !");
                         /*Carapuce.Attack(Pikachu); //carapuce attaque pikachu*/
-                        Pikachu.Infos();
+                        pikachu.Infos();
 
                         m_tour = "tourImpair";
 
@@ -74,14 +79,19 @@ namespace console_app
                 }
             }
 
-            if (!Pikachu.IsAlive())
+            if (!pikachu.IsAlive())
             {
                 Console.WriteLine("Vous êtes KO !");
             }
-            if (!Tetunel.IsAlive())
+            if (!tetunel.IsAlive())
             {
                 Console.WriteLine("Vous avez gagné !");
             }
+        }
+
+        static public void SpawnAlere()
+        {
+
         }
     }
 }
