@@ -18,7 +18,7 @@ namespace console_app
             string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map.txt");
             _map = new char[lines[1].Count(), lines.GetLength(0)];
 
-            int x = 0, y = 0;
+            int x, y = 0;
 
             foreach (string line in lines)
             {
@@ -32,7 +32,7 @@ namespace console_app
             }
         }
 
-        public void drawMap()
+        public void DrawMap()
         {
             Console.Clear();
 
@@ -66,29 +66,25 @@ namespace console_app
 
         }
 
-        public void drawPlayer() {
+        public void DrawPlayer() {
 
             int playerx = 11, playery = 14;
 
             for (int j = 0; j < _map.GetLength(1); j++)
-
             {
                 for (int i = 0; i < _map.GetLength(0); i++)
                 {
-                    switch (playerx == i && playery == j)
+                    if(playery == i && playerx == j)
                     {
-                        case true:
-                            Console.SetCursorPosition(playerx, playery);
                             Console.ForegroundColor = ConsoleColor.Red;
-                            break;
-
-                        default:
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.Write(_map[i, j]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.BackgroundColor = ConsoleColor.Black;
-                            break;
+
                     }
                 }
-            } 
+            }
         }
     }
 }

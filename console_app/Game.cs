@@ -9,10 +9,22 @@ namespace YOURNAMESPACE
     {
         static void Main()
         {
+            bool play = true;
+
             ConsoleManager.WindowSetup();
-            Map map = new Map();
-            map.drawMap();
-            map.drawPlayer();
+
+            while(play == true)
+            {
+                Map map = new Map();
+                map.DrawMap();
+                map.DrawPlayer();
+                
+               /* if(Console.CancelKeyPress)
+                {
+                    play = false;
+                }*/
+            }
+            
         }
     }
 }

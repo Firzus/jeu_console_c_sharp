@@ -15,5 +15,30 @@ namespace console_app
         {
             
         }
+
+      /*  public void Move() {
+
+
+            ConsoleKey key = ConsoleKey.Spacebar;
+
+            switch (key)
+            {
+                case ConsoleKey.Z :
+                         playerx += 1;
+                    break;
+
+                case ConsoleKey.S :
+                         playerx -= 1;
+                    break;
+
+                case ConsoleKey.Q :
+                         playery += 1;
+                    break;
+
+                case ConsoleKey.D :
+                         playery -= 1;
+                    break;
+            }
+        }*/
     }
 }
