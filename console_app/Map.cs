@@ -35,12 +35,22 @@ namespace console_app
         public void DrawMap()
         {
             Console.Clear();
+            int playerx = 11, playery = 14;
 
             for (int j = 0; j < _map.GetLength(1); j++)
-
             {
                 for (int i = 0; i < _map.GetLength(0); i++)
                 {
+                    if (playery == i && playerx == j)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.Write(_map[i, j]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Black;
+
+                    }
+
                     switch (_map[i, j])
                     {
                         case '%':
@@ -65,7 +75,7 @@ namespace console_app
             Thread.Sleep(2000);
 
         }
-
+        /*
         public void DrawPlayer() {
 
             int playerx = 11, playery = 14;
@@ -85,6 +95,6 @@ namespace console_app
                     }
                 }
             }
-        }
+        }*/
     }
 }

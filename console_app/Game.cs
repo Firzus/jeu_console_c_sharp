@@ -17,7 +17,7 @@ namespace YOURNAMESPACE
             {
                 Map map = new Map();
                 map.DrawMap();
-                map.DrawPlayer();
+                //map.DrawPlayer();
                 
                /* if(Console.CancelKeyPress)
                 {
