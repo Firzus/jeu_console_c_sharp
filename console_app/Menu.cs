@@ -117,7 +117,7 @@ namespace console_app
                 {
                     case 0:
                         Map map = new Map();
-                        map.drawMap();
+                        map.DrawMap();
                         break;
                     case 1:
                         return;
