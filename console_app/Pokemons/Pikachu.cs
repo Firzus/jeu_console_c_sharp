@@ -11,13 +11,11 @@ namespace console_app.Pokemons
     internal class Pikachu
     {
         static private string m_name = "Pikachu";
-        private bool m_isStarter = false;
-        static private bool m_isSelected = false;
         private float m_vie = 50.0f;
         private float m_degats = 20.0f;
-        private float m_speed = 30.0f;
+        static private float m_speed = 30.0f;
         // varie de 0 à 100 , 50 = 50% de res
-        private float m_defence = 10.0f;
+        private float m_defence = 0.0f;
 
         static public Pikachu Create()
         {
@@ -44,24 +42,14 @@ namespace console_app.Pokemons
             return m_vie > 0;
         }
 
-        public float GetSpeed()
+        static public float GetSpeed()
         {
             return m_speed;
-        }
-
-        public bool GetStarter()
-        {
-            return m_isStarter;
         }
 
         static public string GetName()
         {
             return m_name;
-        }
-
-        static public bool IsSelected()
-        {
-            return m_isSelected;
         }
 
         /*DEBUG*/

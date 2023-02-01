@@ -11,14 +11,18 @@ namespace YOURNAMESPACE
     {
         static void Main()
         {
-            ConsoleManager.WindowSetup();
-            /*Map.DrawMap();*/
+            // DEBUG
+            //ConsoleManager.WindowSetup();
+            // DEBUG
+
+            // test
+            TeamIA.SetTeamComposition();
+
+            TeamPlayer.SetStarter();
+            TeamPlayer.SetTeamComposition();
 
             // fight
-            /*Fight.FightScene();*/
-            TeamPlayer.SetStarter();
-
-            TeamPlayer.SetTeamComposition();
+            Fight.FightScene();
         }
     }
 }

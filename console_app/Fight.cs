@@ -16,19 +16,14 @@ namespace console_app
 
         public static void FightScene()
         {
-            Pikachu pikachu = Pikachu.Create();
-            Tetunel tetunel = Tetunel.Create();
-
-            TeamPlayer teamPlayer = TeamPlayer.Create();
-
             Console.WriteLine("Un " + Pikachu.GetName() + " sauvage apparait !");
 
             // determine le premier
-            if (pikachu.GetSpeed() > tetunel.GetSpeed())
+            if (SpeedAlterePLayerActive() > Pikachu.GetSpeed())
             {
                 m_isPlayerInitiator = true;
             }
-            else if(pikachu.GetSpeed() < tetunel.GetSpeed())
+            else if (SpeedAlterePLayerActive() < Pikachu.GetSpeed())
             {
                 m_isPlayerInitiator = false;
             }
@@ -39,28 +34,30 @@ namespace console_app
             }
 
             // tant que tout les pokemons sont en vie
-            while (pikachu.IsAlive() && tetunel.IsAlive())
+            while (AlterePLayer().IsAlive() && AltereIA().IsAlive())
             {
                 // boucle de tours
                 switch (m_tour)
                 {
-                    case "tourImpair":
+                    case "tourIA":
 
-                        Console.WriteLine("Pikachu attaque éclair");
-                        pikachu.Attack(tetunel); //pikachu attaque carapuce
-                        tetunel.Infos();
+                        Console.WriteLine("TOUR IA");
+                        Console.WriteLine("pikachu" + " attaque " + NameAlterePLayerActive());
+                        AltereIA().Attack(AlterePLayer()); //pikachu attaque Tetunel
+                        AlterePLayer().Infos();
 
-                        m_tour = "tourPair";
+                        m_tour = "tourPlayer";
 
                         break;
 
-                    case "tourPair":
+                    case "tourPlayer":
 
-                        Console.WriteLine("Carapuce à toi de jouer, gogogo !");
-                        /*Carapuce.Attack(Pikachu); //carapuce attaque pikachu*/
-                        pikachu.Infos();
+                        Console.WriteLine("TOUR JOUEUR");
+                        Console.WriteLine(NameAlterePLayerActive() + " attaque " + "Pikachu");
+                        AlterePLayer().Attack(AltereIA()); //tetunel attaque pikachu*/
+                        AltereIA().Infos();
 
-                        m_tour = "tourImpair";
+                        m_tour = "tourIA";
 
                         break;
 
@@ -68,30 +65,79 @@ namespace console_app
 
                         if (m_isPlayerInitiator)
                         {
-                            m_tour = "tourImpair";
+                            m_tour = "tourPlayer";
                         }
                         if (!m_isPlayerInitiator)
                         {
-                            m_tour = "tourPair";
+                            m_tour = "tourIA";
                         }
 
                         break;
                 }
             }
 
-            if (!pikachu.IsAlive())
+            if (!AlterePLayer().IsAlive())
             {
                 Console.WriteLine("Vous êtes KO !");
             }
-            if (!tetunel.IsAlive())
+            if (!AltereIA().IsAlive())
             {
                 Console.WriteLine("Vous avez gagné !");
             }
         }
 
-        static public void SpawnAlere()
+        static public float SpeedAlterePLayerActive()
         {
+            if (TeamPlayer.GetFirstAltere() == Tetunel.GetName())
+            {
+                return Tetunel.GetSpeed();
+            }
+            else if (TeamPlayer.GetFirstAltere() == Pikachu.GetName())
+            {
+                return Pikachu.GetSpeed();
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
+        static public string NameAlterePLayerActive()
+        {
+            if (TeamPlayer.GetFirstAltere() == Tetunel.GetName())
+            {
+                return Tetunel.GetName();
+            }
+            else if (TeamPlayer.GetFirstAltere() == Pikachu.GetName())
+            {
+                return Pikachu.GetName();
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        static public Tetunel AlterePLayer()
+        {
+            if (TeamPlayer.IsTetunelSelected() && TeamPlayer.GetFirstAltere() == Tetunel.GetName())
+            {
+                Tetunel tetunel = Tetunel.Create();
+
+                return tetunel;
+            }
+            return null;
+        }
+
+        static public Pikachu AltereIA()
+        {
+            if (TeamIA.IsPikachuSelected() && TeamIA.GetFirstAltere() == Pikachu.GetName())
+            {
+                Pikachu pikachu = Pikachu.Create();
+
+                return pikachu;
+            }
+            return null;
         }
     }
 }
