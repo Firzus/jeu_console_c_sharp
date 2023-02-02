@@ -9,24 +9,28 @@ namespace console_app
 {
     internal class Inventaire
     {
-        private List<Object> _objetc;
-        Objet obj = new Objet();
+        private List<Object> _object;
 
-        public void InInventaire()
+        public Inventaire()
         {
-            _objetc = new List<Object>();
+            _object = new List<Object> { };
         }
 
-        public void AddAtInventaire()
+        public void AddAtInventaire(Object Name)
         {
 
-            _objetc.Add(obj);
+            _object.Add(Name);
+            
         }
 
         public void WindowInventaire()
         {
             Console.Clear();
-            Console.WriteLine(_objetc);
+            foreach(Object obj in _object)
+            {
+                Console.WriteLine(obj);
+            }
+            
 
         }
     }

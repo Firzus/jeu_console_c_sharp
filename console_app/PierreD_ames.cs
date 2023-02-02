@@ -7,19 +7,22 @@ using System.Threading.Tasks;
 
 namespace console_app
 {
-    internal class PierreD_ames
+    internal class PierreD_ames : Objet
     {
-        Objet test = new Objet();
-
-        string name = "Pierre d'âmes";
         public PierreD_ames() {
-        }
-        
-        public void Rammasser()
+
+            Name = "Pierre D'ames";
+           // IsConsomable = true;
+            Quantiter = 1; 
+            
+        } 
+
+        public PierreD_ames(string name)
         {
-            test.GetInformation(name);
+            Name = name;
+            //IsConsomable= true;
+            Quantiter = 1;
         }
-      
-        
+
     }
 }

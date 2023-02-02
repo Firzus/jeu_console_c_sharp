@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -112,7 +113,8 @@ namespace console_app
                     break;
 
                 case ConsoleKey.J:
-                    AddAt
+                    inventaire.AddAtInventaire("Potion");
+                    inventaire.AddAtInventaire("Pierre D'ames");
                     break;
                     
             }

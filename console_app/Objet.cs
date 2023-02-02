@@ -8,16 +8,9 @@ namespace console_app
 {
     internal class Objet
     {
-        Inventaire inv = new Inventaire();
-        // Propriété définie par l'utilisateur
-        private string _nom;
-
-        public void GetInformation(string nom)
-        {
-            _nom = nom;
-            inv.AddAtInventaire(_nom);
-
-        }
+        public string Name { get; set; }
+        public bool IsConsomable { get; set; }
+        public int Quantiter { get; set; }
 
     }
 }
