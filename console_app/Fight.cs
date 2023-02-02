@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using console_app.Pokemons;
+﻿using console_app.Pokemons;
 using console_app.Team;
 
 namespace console_app
@@ -17,8 +11,10 @@ namespace console_app
         static Altere _player;
         static Altere _enemy;
 
-        public static void FightScene()
+        public void FightScene()
         {
+            Console.Clear();
+
             Console.WriteLine(" Un " + AltereIAActive().Name + " niveau " + AltereIAActive().Level + " sauvage apparait !\n");
 
             Console.WriteLine(" " + AlterePLayerActive().Name + " niveau " + AlterePLayerActive().Level + " à toi de jouer !\n");
@@ -85,12 +81,23 @@ namespace console_app
 
             if (!AlterePLayerActive().IsAlive)
             {
-                Console.WriteLine("Vous êtes KO !");
+                Console.WriteLine("\n Vous êtes KO !");
             }
             if (!AltereIAActive().IsAlive)
             {
-                Console.WriteLine("Vous avez gagné !");
+                Console.WriteLine("\n Vous avez gagné !");
             }
+            Console.WriteLine("\n Appuiez sur espace");
+
+
+            ConsoleKeyInfo key;
+            key = new ConsoleKeyInfo();
+
+            while (key.Key != ConsoleKey.Spacebar)
+            {
+                key = Console.ReadKey();
+            }
+            
         }
 
         static public Altere AlterePLayerActive()
