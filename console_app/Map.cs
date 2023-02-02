@@ -6,7 +6,19 @@ namespace console_app
     {
         char[,] _map;
 
-        int m_playerX = 11, m_playerY = 14;
+        int m_playerX = 11;
+        public int PlayerX
+        {
+            get { return m_playerX; }
+            set { m_playerX = value; }
+        }
+
+        int m_playerY = 14;
+        public int PlayerY
+        {
+            get { return m_playerY; }
+            set { m_playerY = value; }
+        }
 
         Inventaire inventaire = new Inventaire();
 
