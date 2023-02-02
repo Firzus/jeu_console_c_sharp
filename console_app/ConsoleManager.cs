@@ -22,7 +22,7 @@ namespace YOURNAMESPACE
         public static void WindowSetup()
         {
             //Set console properties
-            /*Console.Title = ;*/
+            Console.Title = "Realm of Wild Hunt";
             //Console.CursorVisible = false;
 
             //Set console size to 80% of the largest possible size
