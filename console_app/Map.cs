@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace console_app
 {
@@ -14,10 +16,11 @@ namespace console_app
 
         int m_playerX = 11, m_playerY = 14;
 
+        Inventaire inventaire = new Inventaire();
 
         public Map()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map1.txt");
+            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map.txt");
             _map = new char[lines[1].Count(), lines.GetLength(0)];
 
             int x = 0, y = 0;
@@ -35,7 +38,7 @@ namespace console_app
         }
 
 
-        public void DrawMap()
+        public void drawMap()
         {
             Console.Clear();
             var rand = new Random();
@@ -99,18 +102,39 @@ namespace console_app
 
         }
 
+
         public void Move()
         {
+        
+            ConsoleKeyInfo key;
+            bool Isopen = false;
+            
             ConsoleKeyInfo key;
             key = Console.ReadKey();
 
             switch (key.Key)
             {
+               case ConsoleKey.I:
+                   inventaire.WindowInventaire();
+                   Isopen = true;
+                   break;
+                    
                 case ConsoleKey.Z:
                     if (_map[m_playerX, m_playerY - 1] != '#')
                     {
                         m_playerY -= 1;
                         DrawMap();
+                    }
+                    break;
+                    
+                case ConsoleKey.Escape:
+                    if(Isopen == true)
+                    {
+                        drawMap();
+                    }
+                    else if (Isopen == false) 
+                    {
+                        Menu.menu();
                     }
                     break;
 
@@ -136,6 +160,15 @@ namespace console_app
                         m_playerX += 1;
                         DrawMap();
                     }
+                    break;
+                    
+                case ConsoleKey.J:
+                    inventaire.AddAtInventaire("Potion");
+                    inventaire.AddAtInventaire("Pierre D'ames");
+                    break;
+                    
+                default:
+                    key = Console.ReadKey();
                     break;
 
             }
