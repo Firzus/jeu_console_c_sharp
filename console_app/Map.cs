@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using console_app.Team;
 
 namespace console_app
 {
@@ -20,7 +12,7 @@ namespace console_app
 
         public Map()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map.txt");
+            string[] lines = System.IO.File.ReadAllLines(@"X:\jeu_console_c_sharp\console_app\Sprite\Map1.txt");
             _map = new char[lines[1].Count(), lines.GetLength(0)];
 
             int x = 0, y = 0;
@@ -40,6 +32,7 @@ namespace console_app
 
         public void DrawMap()
         {
+        debut_map:
             Console.Clear();
             var rand = new Random();
 
@@ -62,14 +55,18 @@ namespace console_app
                             int chance = rand.Next(5);
                             if (chance < 2)
                             {
-                                //Combat combat = new Combat();
-                                //combat.drawCombat();
-                                continue;
+                                Fight fight = new Fight();
+
+                                TeamIA.SetTeamComposition();
+
+                                // fight
+                                fight.FightScene();
+                                goto debut_map;
                             }
                         }
 
                         // Objets
-                        else if (_map[i, j] == '!')
+                        if (_map[i, j] == '!')
                         {
                             //Object object = new Object();
                             //object.AddObject();
@@ -105,19 +102,22 @@ namespace console_app
 
         public void Move()
         {
+<<<<<<< HEAD
         
             ConsoleKeyInfo key;
             bool Isopen = false;
             
+=======
+            ConsoleKeyInfo key;
+>>>>>>> c58d4aab3ebebd740391c9be1fed602ff5b1f5aa
             key = Console.ReadKey();
 
             switch (key.Key)
             {
-               case ConsoleKey.I:
-                   inventaire.WindowInventaire();
-                   Isopen = true;
-                   break;
-                    
+                case ConsoleKey.I:
+                    inventaire.WindowInventaire();
+                    break;
+
                 case ConsoleKey.Z:
                     if (_map[m_playerX, m_playerY - 1] != '#')
                     {
@@ -125,8 +125,14 @@ namespace console_app
                         DrawMap();
                     }
                     break;
-                    
+
+                case ConsoleKey.Spacebar:
+                    DrawMap();
+                    break;
+
+
                 case ConsoleKey.Escape:
+<<<<<<< HEAD
                     if(Isopen == true)
                     {
                         DrawMap();
@@ -135,6 +141,9 @@ namespace console_app
                     {
                         Menu.menu();
                     }
+=======
+                    Menu.menu();
+>>>>>>> c58d4aab3ebebd740391c9be1fed602ff5b1f5aa
                     break;
 
                 case ConsoleKey.Q:
@@ -160,12 +169,12 @@ namespace console_app
                         DrawMap();
                     }
                     break;
-                    
+
                 case ConsoleKey.J:
                     inventaire.AddAtInventaire("Potion");
                     inventaire.AddAtInventaire("Pierre D'ames");
                     break;
-                    
+
                 default:
                     key = Console.ReadKey();
                     break;
