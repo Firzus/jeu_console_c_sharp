@@ -11,8 +11,10 @@ namespace console_app
 {
     internal class Fight
     {
-        static private bool m_isPlayerInitiator;
-        static private string m_tour = "whoStart";
+        static private bool _isPlayerInitiator;
+        static private string _tour = "whoStart";
+
+        static private bool _isAnswerAttackNull = true;
 
         static Altere _player;
         static Altere _enemy;
@@ -26,57 +28,98 @@ namespace console_app
             // determine le premier
             if (AlterePLayerActive().Speed > AltereIAActive().Speed)
             {
-                m_isPlayerInitiator = true;
+                _isPlayerInitiator = true;
             }
             else if (AlterePLayerActive().Speed < AltereIAActive().Speed)
             {
-                m_isPlayerInitiator = false;
+                _isPlayerInitiator = false;
             }
             else
             {
                 Random random = new Random();
-                m_isPlayerInitiator = random.Next(0, 2) == 0 ? false : true;
+                _isPlayerInitiator = random.Next(0, 2) == 0 ? false : true;
             }
 
             // tant que tout les pokemons sont en vie
             while (AlterePLayerActive().IsAlive && AltereIAActive().IsAlive)
             {
                 // boucle de tours
-                switch (m_tour)
+                switch (_tour)
                 {
                     case "tourIA":
 
-                        Console.WriteLine("TOUR IA");
-                        Console.WriteLine(AltereIAActive().Name + " attaque " + AlterePLayerActive().Name);
-                        AltereIAActive().Attack(AlterePLayerActive());
+                        Console.WriteLine(" TOUR IA\n");
 
-                        Console.WriteLine(" Vie " + AlterePLayerActive().Name + " : " + AlterePLayerActive().Life);
+                        Thread.Sleep(2500);
 
-                        m_tour = "tourPlayer";
+                        AltereIAActive().BasicAttack(AlterePLayerActive());
+                        Console.WriteLine(" " + AltereIAActive().Name + " attaque " + AlterePLayerActive().Name);
+                        Console.WriteLine(" Vie de " + AlterePLayerActive().Name + " : " + AlterePLayerActive().Life);;
+
+                        _tour = "tourPlayer";
 
                         break;
 
                     case "tourPlayer":
 
-                        Console.WriteLine("TOUR JOUEUR");
-                        Console.WriteLine(AlterePLayerActive().Name + " attaque " + AltereIAActive().Name);
-                        AlterePLayerActive().Attack(AltereIAActive());
+                        Console.WriteLine(" TOUR JOUEUR\n");
 
-                        Console.WriteLine(" Vie " + AltereIAActive().Name + " : " + AltereIAActive().Life);
+                        Thread.Sleep(2500);
 
-                        m_tour = "tourIA";
+                        Console.WriteLine(" Que voulez-vous faire ?\n");
 
+                        Console.WriteLine(" *1* Attaque basique");
+                        Console.WriteLine(" *2* Attaque élementaire\n");
+
+                        string _answerAttack = Console.ReadLine();
+
+                        while(_isAnswerAttackNull)
+                        {
+                            _isAnswerAttackNull = false;
+
+                            switch (_answerAttack)
+                            {
+                                case "Attaque basique":
+                                case "attaque basique":
+                                case "basique":
+                                case "Basique":
+                                case "1":
+                                    AlterePLayerActive().BasicAttack(AltereIAActive());
+                                    Console.WriteLine(" " + AlterePLayerActive().Name + " attaque " + AltereIAActive().Name);
+                                    Console.WriteLine(" Vie de " + AltereIAActive().Name + " : " + AltereIAActive().Life + "\n");
+                                    break;
+
+                                case "Attaque élementaire":
+                                case "Attaque elementaire":
+                                case "attaque élementaire":
+                                case "attaque elementaire":
+                                case "élementaire":
+                                case "elementaire":
+                                case "2":
+                                    AlterePLayerActive().ElementarySpell(AltereIAActive());
+                                    Console.WriteLine(" " + AlterePLayerActive().Name + " attaque " + AltereIAActive().Name);
+                                    Console.WriteLine(" Vie de " + AltereIAActive().Name + " : " + AltereIAActive().Life + "\n");
+                                    break;
+
+                                default:
+                                    _isAnswerAttackNull = true;
+                                    Console.WriteLine("Je n'ai pas compris, veillez recommencer. \n");
+                                    break;
+                            }
+                        }
+
+                        _tour = "tourIA";
                         break;
 
                     case "whoStart":
 
-                        if (m_isPlayerInitiator)
+                        if (_isPlayerInitiator)
                         {
-                            m_tour = "tourPlayer";
+                            _tour = "tourPlayer";
                         }
-                        if (!m_isPlayerInitiator)
+                        if (!_isPlayerInitiator)
                         {
-                            m_tour = "tourIA";
+                            _tour = "tourIA";
                         }
 
                         break;
@@ -85,11 +128,11 @@ namespace console_app
 
             if (!AlterePLayerActive().IsAlive)
             {
-                Console.WriteLine("Vous êtes KO !");
+                Console.WriteLine(" Vous êtes KO !");
             }
             if (!AltereIAActive().IsAlive)
             {
-                Console.WriteLine("Vous avez gagné !");
+                Console.WriteLine(" Vous avez gagné !");
             }
         }
 

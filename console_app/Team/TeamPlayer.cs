@@ -17,6 +17,10 @@ namespace console_app.Team
         static private bool _isSwitchAltereByNull = true;
         static private bool _isTeamChangeNull = true;
 
+        static private bool _isFirstLocationOccupt = false;
+        static private bool _isSecondLocationOccupt = false;
+        static private bool _isThirdLocationOccupt = false;
+
         static private string[] _teamComposition = new string[3];
 
         public static string[] TeamComposition { get => _teamComposition; set => _teamComposition = value; }
@@ -35,6 +39,8 @@ namespace console_app.Team
 
                 Console.WriteLine(" Qui veux-tu choisir ?\n");
                 string m_starterInput = Console.ReadLine();
+
+                _isFirstLocationOccupt = true;
 
                 switch (m_starterInput)
                 {
@@ -67,9 +73,9 @@ namespace console_app.Team
                     case "tetunel":
                     case "Têtunel":
                     case "têtunel":
-                        _starter = "Tetunel";
+                        _starter = "Têtunel";
                         _teamComposition[0] = _starter;
-                        Console.WriteLine("\n Très bon choix, Tetunel sera un très grand allié !\n");
+                        Console.WriteLine("\n Très bon choix, Têtunel sera un très grand allié !\n");
                         break;
 
                     default:
@@ -82,16 +88,22 @@ namespace console_app.Team
 
         static public void SetTeamComposition()
         {
-            Console.WriteLine(" Equipe :\n");
+            Console.WriteLine(" Votre équipe :\n");
 
             Console.WriteLine(" 1 - " + _teamComposition[0]);
             Console.WriteLine(" 2 - " + _teamComposition[1]);
             Console.WriteLine(" 3 - " + _teamComposition[2] + "\n");
 
-            Console.WriteLine(" Vos altérés :\n");
+            Console.WriteLine(" Vos altérés (Tous disponible pour les tests) :\n");
 
-            Console.WriteLine(" * Microcher *");
-            Console.WriteLine(" * Pikachu *\n");
+            Console.WriteLine(" * Carafon (FEU)");
+            Console.WriteLine(" * Manchouette (EAU)");
+            Console.WriteLine(" * Volovan (AIE)");
+            Console.WriteLine(" * Têtunel (TERRE)");
+            Console.WriteLine(" * Goinfrelon (AIR)");
+            Console.WriteLine(" * Microcher (TERRE)");
+            Console.WriteLine(" * Chacharmant (EAU)");
+            Console.WriteLine(" * Cochombre (AIR)\n");
 
             while (_isTeamChangeNull)
             {
@@ -119,10 +131,9 @@ namespace console_app.Team
                                 case "tetunel":
                                 case "têtunel":
 
-                                    if (_teamComposition[0] == "Tetunel" || _teamComposition[1] == "Tetunel" || _teamComposition[2] == "Tetunel")
+                                    if (_teamComposition[0] == "Têtunel" || _teamComposition[1] == "Têtunel" || _teamComposition[2] == "Têtunel")
                                     {
                                         Console.WriteLine(" Il est déjà dans ton équipe.\n");
-
                                         _isSwitchAltereNull = true;
                                     }
                                     else
@@ -131,39 +142,132 @@ namespace console_app.Team
                                         {
                                             _isSwitchAltereByNull = false;
 
-                                            Console.WriteLine(" A la place de qui ?\n");
-                                            string _switchAltereBy = Console.ReadLine();
-
-                                            switch (_switchAltereBy)
+                                            if(!_isFirstLocationOccupt)
                                             {
-                                                case "Pikachu":
-                                                case "pikachu":
-                                                    Console.WriteLine(" Ajout de Pikachu à ton équipe.\n");
-                                                    for (int i = 0; i < _teamComposition.Length; i++)
-                                                    {
-                                                        if (_teamComposition[i] == "Tetunel") // old value
-                                                        {
-                                                            _teamComposition[i] = "Pikachu"; // new value
-                                                        }
-                                                    }
-                                                    break;
+                                                _teamComposition[0] = "Têtunel";
 
-                                                default:
-                                                    Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
-                                                    _isSwitchAltereByNull = true;
-                                                    break;
+                                                _isFirstLocationOccupt = true;
+                                            }
+                                            else if(!_isSecondLocationOccupt)
+                                            {
+                                                _teamComposition[1] = "Têtunel";
+
+                                                _isSecondLocationOccupt = true;
+                                            }
+                                            else if(!_isThirdLocationOccupt)
+                                            {
+                                                _teamComposition[2] = "Têtunel";
+
+                                                _isThirdLocationOccupt = true;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine(" A la place de qui ?\n");
+
+                                                string _switchAltereBy = Console.ReadLine();
+
+                                                switch (_switchAltereBy)
+                                                {
+                                                    case "Chacharmant":
+                                                    case "chacharmant":
+                                                        Console.WriteLine(" Ajout de Chacharmant à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Chacharmant")
+                                                            {
+                                                                _teamComposition[i] = "Têtunel";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Cochombre":
+                                                    case "cochombre":
+                                                        Console.WriteLine(" Ajout de Cochombre à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Cochombre")
+                                                            {
+                                                                _teamComposition[i] = "Têtunel";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Carafon":
+                                                    case "carafon":
+                                                        Console.WriteLine(" Ajout de Carafon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Carafon")
+                                                            {
+                                                                _teamComposition[i] = "Têtunel";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Goinfrelon":
+                                                    case "goinfrelon":
+                                                        Console.WriteLine(" Ajout de Goinfrelon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Goinfrelon")
+                                                            {
+                                                                _teamComposition[i] = "Têtunel";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Manchouette":
+                                                    case "manchouette":
+                                                        Console.WriteLine(" Ajout de Manchouette à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Manchouette")
+                                                            {
+                                                                _teamComposition[i] = "Têtunel";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Microcher":
+                                                    case "microcher":
+                                                        Console.WriteLine(" Ajout de Microcher à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Microcher")
+                                                            {
+                                                                _teamComposition[i] = "Têtunel";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Volovan":
+                                                    case "volovan":
+                                                        Console.WriteLine(" Ajout de Volovan à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Volovan")
+                                                            {
+                                                                _teamComposition[i] = "Têtunel";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    default:
+                                                        Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
+                                                        _isSwitchAltereByNull = true;
+                                                        break;
+                                                }
                                             }
                                         }
                                     }
                                     break;
 
-                                case "Pikachu":
-                                case "pikachu":
+                                case "Carafon":
+                                case "carafon":
 
-                                    if (_teamComposition[0] == "Pikachu" || _teamComposition[1] == "Pikachu" || _teamComposition[2] == "Pikachu")
+                                    if (_teamComposition[0] == "Carafon" || _teamComposition[1] == "Carafon" || _teamComposition[2] == "Carafon")
                                     {
                                         Console.WriteLine(" Il est déjà dans ton équipe.\n");
-
                                         _isSwitchAltereNull = true;
                                     }
                                     else
@@ -172,31 +276,808 @@ namespace console_app.Team
                                         {
                                             _isSwitchAltereByNull = false;
 
-                                            Console.WriteLine(" A la place de qui ?\n");
-                                            string _switchAltereBy= Console.ReadLine();
-
-                                            switch (_switchAltereBy)
+                                            if (!_isFirstLocationOccupt)
                                             {
-                                                case "Tetunel":
-                                                case "tetunel":
-                                                    Console.WriteLine(" Ajout de Tetunel à ton équipe.\n");
-                                                    for (int i = 0; i < _teamComposition.Length; i++)
-                                                    {
-                                                        if (_teamComposition[i] == "Pikachu") // old value
-                                                        {
-                                                            _teamComposition[i] = "Tetunel"; // new value
-                                                        }
-                                                    }
-                                                    break;
+                                                _teamComposition[0] = "Carafon";
 
-                                                default:
-                                                    Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
-                                                    _isSwitchAltereByNull = true;
-                                                    break;
+                                                _isFirstLocationOccupt = true;
+                                            }
+                                            else if (!_isSecondLocationOccupt)
+                                            {
+                                                _teamComposition[1] = "Carafon";
+
+                                                _isSecondLocationOccupt = true;
+                                            }
+                                            else if (!_isThirdLocationOccupt)
+                                            {
+                                                _teamComposition[2] = "Carafon";
+
+                                                _isThirdLocationOccupt = true;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine(" A la place de qui ?\n");
+
+                                                string _switchAltereBy = Console.ReadLine();
+
+                                                switch (_switchAltereBy)
+                                                {
+                                                    case "Chacharmant":
+                                                    case "chacharmant":
+                                                        Console.WriteLine(" Ajout de Chacharmant à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Chacharmant")
+                                                            {
+                                                                _teamComposition[i] = "Carafon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Cochombre":
+                                                    case "cochombre":
+                                                        Console.WriteLine(" Ajout de Cochombre à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Cochombre")
+                                                            {
+                                                                _teamComposition[i] = "Carafon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Têtunel":
+                                                    case "Tetunel":
+                                                    case "têtunel":
+                                                    case "tetunel":
+                                                        Console.WriteLine(" Ajout de Têtunel à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Têtunel")
+                                                            {
+                                                                _teamComposition[i] = "Carafon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Goinfrelon":
+                                                    case "goinfrelon":
+                                                        Console.WriteLine(" Ajout de Goinfrelon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Goinfrelon")
+                                                            {
+                                                                _teamComposition[i] = "Carafon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Manchouette":
+                                                    case "manchouette":
+                                                        Console.WriteLine(" Ajout de Manchouette à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Manchouette")
+                                                            {
+                                                                _teamComposition[i] = "Carafon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Microcher":
+                                                    case "microcher":
+                                                        Console.WriteLine(" Ajout de Microcher à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Microcher")
+                                                            {
+                                                                _teamComposition[i] = "Carafon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Volovan":
+                                                    case "volovan":
+                                                        Console.WriteLine(" Ajout de Volovan à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Volovan")
+                                                            {
+                                                                _teamComposition[i] = "Carafon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    default:
+                                                        Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
+                                                        _isSwitchAltereByNull = true;
+                                                        break;
+                                                }
                                             }
                                         }
                                     }
                                     break;
+
+                                case "Cochombre":
+                                case "cochombre":
+
+                                    if (_teamComposition[0] == "Cochombre" || _teamComposition[1] == "Cochombre" || _teamComposition[2] == "Cochombre")
+                                    {
+                                        Console.WriteLine(" Il est déjà dans ton équipe.\n");
+                                        _isSwitchAltereNull = true;
+                                    }
+                                    else
+                                    {
+                                        while (_isSwitchAltereByNull)
+                                        {
+                                            _isSwitchAltereByNull = false;
+
+                                            if (!_isFirstLocationOccupt)
+                                            {
+                                                _teamComposition[0] = "Cochombre";
+
+                                                _isFirstLocationOccupt = true;
+                                            }
+                                            else if (!_isSecondLocationOccupt)
+                                            {
+                                                _teamComposition[1] = "Cochombre";
+
+                                                _isSecondLocationOccupt = true;
+                                            }
+                                            else if (!_isThirdLocationOccupt)
+                                            {
+                                                _teamComposition[2] = "Cochombre";
+
+                                                _isThirdLocationOccupt = true;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine(" A la place de qui ?\n");
+
+                                                string _switchAltereBy = Console.ReadLine();
+
+                                                switch (_switchAltereBy)
+                                                {
+                                                    case "Chacharmant":
+                                                    case "chacharmant":
+                                                        Console.WriteLine(" Ajout de Chacharmant à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Chacharmant")
+                                                            {
+                                                                _teamComposition[i] = "Cochombre";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Carafon":
+                                                    case "carafon":
+                                                        Console.WriteLine(" Ajout de Carafon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Carafon")
+                                                            {
+                                                                _teamComposition[i] = "Cochombre";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Têtunel":
+                                                    case "Tetunel":
+                                                    case "têtunel":
+                                                    case "tetunel":
+                                                        Console.WriteLine(" Ajout de Têtunel à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Têtunel")
+                                                            {
+                                                                _teamComposition[i] = "Cochombre";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Goinfrelon":
+                                                    case "goinfrelon":
+                                                        Console.WriteLine(" Ajout de Goinfrelon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Goinfrelon")
+                                                            {
+                                                                _teamComposition[i] = "Cochombre";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Manchouette":
+                                                    case "manchouette":
+                                                        Console.WriteLine(" Ajout de Manchouette à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Manchouette")
+                                                            {
+                                                                _teamComposition[i] = "Cochombre";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Microcher":
+                                                    case "microcher":
+                                                        Console.WriteLine(" Ajout de Microcher à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Microcher")
+                                                            {
+                                                                _teamComposition[i] = "Cochombre";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Volovan":
+                                                    case "volovan":
+                                                        Console.WriteLine(" Ajout de Volovan à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Volovan")
+                                                            {
+                                                                _teamComposition[i] = "Cochombre";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    default:
+                                                        Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
+                                                        _isSwitchAltereByNull = true;
+                                                        break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                case "Goinfrelon":
+                                case "goinfrelon":
+
+                                    if (_teamComposition[0] == "Goinfrelon" || _teamComposition[1] == "Goinfrelon" || _teamComposition[2] == "Goinfrelon")
+                                    {
+                                        Console.WriteLine(" Il est déjà dans ton équipe.\n");
+                                        _isSwitchAltereNull = true;
+                                    }
+                                    else
+                                    {
+                                        while (_isSwitchAltereByNull)
+                                        {
+                                            _isSwitchAltereByNull = false;
+
+                                            if (!_isFirstLocationOccupt)
+                                            {
+                                                _teamComposition[0] = "Goinfrelon";
+
+                                                _isFirstLocationOccupt = true;
+                                            }
+                                            else if (!_isSecondLocationOccupt)
+                                            {
+                                                _teamComposition[1] = "Goinfrelon";
+
+                                                _isSecondLocationOccupt = true;
+                                            }
+                                            else if (!_isThirdLocationOccupt)
+                                            {
+                                                _teamComposition[2] = "Goinfrelon";
+
+                                                _isThirdLocationOccupt = true;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine(" A la place de qui ?\n");
+
+                                                string _switchAltereBy = Console.ReadLine();
+
+                                                switch (_switchAltereBy)
+                                                {
+                                                    case "Chacharmant":
+                                                    case "chacharmant":
+                                                        Console.WriteLine(" Ajout de Chacharmant à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Chacharmant")
+                                                            {
+                                                                _teamComposition[i] = "Goinfrelon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Carafon":
+                                                    case "carafon":
+                                                        Console.WriteLine(" Ajout de Carafon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Carafon")
+                                                            {
+                                                                _teamComposition[i] = "Goinfrelon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Têtunel":
+                                                    case "Tetunel":
+                                                    case "têtunel":
+                                                    case "tetunel":
+                                                        Console.WriteLine(" Ajout de Têtunel à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Têtunel")
+                                                            {
+                                                                _teamComposition[i] = "Goinfrelon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Cochombre":
+                                                    case "cochombre":
+                                                        Console.WriteLine(" Ajout de Cochombre à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Cochombre")
+                                                            {
+                                                                _teamComposition[i] = "Goinfrelon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Manchouette":
+                                                    case "manchouette":
+                                                        Console.WriteLine(" Ajout de Manchouette à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Manchouette")
+                                                            {
+                                                                _teamComposition[i] = "Goinfrelon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Microcher":
+                                                    case "microcher":
+                                                        Console.WriteLine(" Ajout de Microcher à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Microcher")
+                                                            {
+                                                                _teamComposition[i] = "Goinfrelon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Volovan":
+                                                    case "volovan":
+                                                        Console.WriteLine(" Ajout de Volovan à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Volovan")
+                                                            {
+                                                                _teamComposition[i] = "Goinfrelon";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    default:
+                                                        Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
+                                                        _isSwitchAltereByNull = true;
+                                                        break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                case "Manchouette":
+                                case "manchouette":
+
+                                    if (_teamComposition[0] == "Manchouette" || _teamComposition[1] == "Manchouette" || _teamComposition[2] == "Manchouette")
+                                    {
+                                        Console.WriteLine(" Il est déjà dans ton équipe.\n");
+                                        _isSwitchAltereNull = true;
+                                    }
+                                    else
+                                    {
+                                        while (_isSwitchAltereByNull)
+                                        {
+                                            _isSwitchAltereByNull = false;
+
+                                            if (!_isFirstLocationOccupt)
+                                            {
+                                                _teamComposition[0] = "Manchouette";
+
+                                                _isFirstLocationOccupt = true;
+                                            }
+                                            else if (!_isSecondLocationOccupt)
+                                            {
+                                                _teamComposition[1] = "Manchouette";
+
+                                                _isSecondLocationOccupt = true;
+                                            }
+                                            else if (!_isThirdLocationOccupt)
+                                            {
+                                                _teamComposition[2] = "Manchouette";
+
+                                                _isThirdLocationOccupt = true;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine(" A la place de qui ?\n");
+
+                                                string _switchAltereBy = Console.ReadLine();
+
+                                                switch (_switchAltereBy)
+                                                {
+                                                    case "Chacharmant":
+                                                    case "chacharmant":
+                                                        Console.WriteLine(" Ajout de Chacharmant à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Chacharmant")
+                                                            {
+                                                                _teamComposition[i] = "Manchouette";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Carafon":
+                                                    case "carafon":
+                                                        Console.WriteLine(" Ajout de Carafon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Carafon")
+                                                            {
+                                                                _teamComposition[i] = "Manchouette";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Têtunel":
+                                                    case "Tetunel":
+                                                    case "têtunel":
+                                                    case "tetunel":
+                                                        Console.WriteLine(" Ajout de Têtunel à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Têtunel")
+                                                            {
+                                                                _teamComposition[i] = "Manchouette";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Cochombre":
+                                                    case "cochombre":
+                                                        Console.WriteLine(" Ajout de Cochombre à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Cochombre")
+                                                            {
+                                                                _teamComposition[i] = "Manchouette";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Goinfrelon":
+                                                    case "goinfrelon":
+                                                        Console.WriteLine(" Ajout de Goinfrelon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Goinfrelon")
+                                                            {
+                                                                _teamComposition[i] = "Manchouette";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Microcher":
+                                                    case "microcher":
+                                                        Console.WriteLine(" Ajout de Microcher à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Microcher")
+                                                            {
+                                                                _teamComposition[i] = "Manchouette";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Volovan":
+                                                    case "volovan":
+                                                        Console.WriteLine(" Ajout de Volovan à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Volovan")
+                                                            {
+                                                                _teamComposition[i] = "Manchouette";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    default:
+                                                        Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
+                                                        _isSwitchAltereByNull = true;
+                                                        break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                case "Microcher":
+                                case "microcher":
+
+                                    if (_teamComposition[0] == "Microcher" || _teamComposition[1] == "Microcher" || _teamComposition[2] == "Microcher")
+                                    {
+                                        Console.WriteLine(" Il est déjà dans ton équipe.\n");
+                                        _isSwitchAltereNull = true;
+                                    }
+                                    else
+                                    {
+                                        while (_isSwitchAltereByNull)
+                                        {
+                                            _isSwitchAltereByNull = false;
+
+                                            if (!_isFirstLocationOccupt)
+                                            {
+                                                _teamComposition[0] = "Microcher";
+
+                                                _isFirstLocationOccupt = true;
+                                            }
+                                            else if (!_isSecondLocationOccupt)
+                                            {
+                                                _teamComposition[1] = "Microcher";
+
+                                                _isSecondLocationOccupt = true;
+                                            }
+                                            else if (!_isThirdLocationOccupt)
+                                            {
+                                                _teamComposition[2] = "Microcher";
+
+                                                _isThirdLocationOccupt = true;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine(" A la place de qui ?\n");
+
+                                                string _switchAltereBy = Console.ReadLine();
+
+                                                switch (_switchAltereBy)
+                                                {
+                                                    case "Chacharmant":
+                                                    case "chacharmant":
+                                                        Console.WriteLine(" Ajout de Chacharmant à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Chacharmant")
+                                                            {
+                                                                _teamComposition[i] = "Microcher";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Carafon":
+                                                    case "carafon":
+                                                        Console.WriteLine(" Ajout de Carafon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Carafon")
+                                                            {
+                                                                _teamComposition[i] = "Microcher";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Têtunel":
+                                                    case "Tetunel":
+                                                    case "têtunel":
+                                                    case "tetunel":
+                                                        Console.WriteLine(" Ajout de Têtunel à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Têtunel")
+                                                            {
+                                                                _teamComposition[i] = "Microcher";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Cochombre":
+                                                    case "cochombre":
+                                                        Console.WriteLine(" Ajout de Cochombre à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Cochombre")
+                                                            {
+                                                                _teamComposition[i] = "Microcher";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Goinfrelon":
+                                                    case "goinfrelon":
+                                                        Console.WriteLine(" Ajout de Goinfrelon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Goinfrelon")
+                                                            {
+                                                                _teamComposition[i] = "Microcher";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Manchouette":
+                                                    case "manchouette":
+                                                        Console.WriteLine(" Ajout de Manchouette à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Manchouette")
+                                                            {
+                                                                _teamComposition[i] = "Microcher";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Volovan":
+                                                    case "volovan":
+                                                        Console.WriteLine(" Ajout de Volovan à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Volovan")
+                                                            {
+                                                                _teamComposition[i] = "Microcher";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    default:
+                                                        Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
+                                                        _isSwitchAltereByNull = true;
+                                                        break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                case "Volovan":
+                                case "volovan":
+
+                                    if (_teamComposition[0] == "Volovan" || _teamComposition[1] == "Volovan" || _teamComposition[2] == "Volovan")
+                                    {
+                                        Console.WriteLine(" Il est déjà dans ton équipe.\n");
+                                        _isSwitchAltereNull = true;
+                                    }
+                                    else
+                                    {
+                                        while (_isSwitchAltereByNull)
+                                        {
+                                            _isSwitchAltereByNull = false;
+
+                                            if (!_isFirstLocationOccupt)
+                                            {
+                                                _teamComposition[0] = "Volovan";
+
+                                                _isFirstLocationOccupt = true;
+                                            }
+                                            else if (!_isSecondLocationOccupt)
+                                            {
+                                                _teamComposition[1] = "Volovan";
+
+                                                _isSecondLocationOccupt = true;
+                                            }
+                                            else if (!_isThirdLocationOccupt)
+                                            {
+                                                _teamComposition[2] = "Volovan";
+
+                                                _isThirdLocationOccupt = true;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine(" A la place de qui ?\n");
+
+                                                string _switchAltereBy = Console.ReadLine();
+
+                                                switch (_switchAltereBy)
+                                                {
+                                                    case "Chacharmant":
+                                                    case "chacharmant":
+                                                        Console.WriteLine(" Ajout de Chacharmant à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Chacharmant")
+                                                            {
+                                                                _teamComposition[i] = "Volovan";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Carafon":
+                                                    case "carafon":
+                                                        Console.WriteLine(" Ajout de Carafon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Carafon")
+                                                            {
+                                                                _teamComposition[i] = "Volovan";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Têtunel":
+                                                    case "Tetunel":
+                                                    case "têtunel":
+                                                    case "tetunel":
+                                                        Console.WriteLine(" Ajout de Têtunel à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Têtunel")
+                                                            {
+                                                                _teamComposition[i] = "Volovan";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Cochombre":
+                                                    case "cochombre":
+                                                        Console.WriteLine(" Ajout de Cochombre à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Cochombre")
+                                                            {
+                                                                _teamComposition[i] = "Volovan";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Goinfrelon":
+                                                    case "goinfrelon":
+                                                        Console.WriteLine(" Ajout de Goinfrelon à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Goinfrelon")
+                                                            {
+                                                                _teamComposition[i] = "Volovan";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Manchouette":
+                                                    case "manchouette":
+                                                        Console.WriteLine(" Ajout de Manchouette à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Manchouette")
+                                                            {
+                                                                _teamComposition[i] = "Volovan";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    case "Microcher":
+                                                    case "microcher":
+                                                        Console.WriteLine(" Ajout de Microcher à ton équipe.\n");
+                                                        for (int i = 0; i < _teamComposition.Length; i++)
+                                                        {
+                                                            if (_teamComposition[i] == "Microcher")
+                                                            {
+                                                                _teamComposition[i] = "Volovan";
+                                                            }
+                                                        }
+                                                        break;
+
+                                                    default:
+                                                        Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
+                                                        _isSwitchAltereByNull = true;
+                                                        break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+
 
                                 default:
                                     Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");

@@ -12,10 +12,6 @@ namespace YOURNAMESPACE
     {
         static void Main()
         {
-            // DEBUG
-            //ConsoleManager.WindowSetup();
-            // DEBUG
-
             // test
             TeamIA.SetTeamComposition();
 
