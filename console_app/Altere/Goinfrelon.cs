@@ -20,6 +20,12 @@ namespace console_app.Pokemons
             _damage = 20.0f;
             _speed = 35.0f;
 
+            _type = "Air";
+            _typeFire = false;
+            _typeWatter = false;
+            _typeGround = false;
+            _typeAir = true;
+
             // varie de 0 à 100 , 50 = 50% de res
             _defense = 0.0f;
         }
