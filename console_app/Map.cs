@@ -102,14 +102,11 @@ namespace console_app
 
         public void Move()
         {
-<<<<<<< HEAD
+
         
             ConsoleKeyInfo key;
             bool Isopen = false;
             
-=======
-            ConsoleKeyInfo key;
->>>>>>> c58d4aab3ebebd740391c9be1fed602ff5b1f5aa
             key = Console.ReadKey();
 
             switch (key.Key)
@@ -132,7 +129,6 @@ namespace console_app
 
 
                 case ConsoleKey.Escape:
-<<<<<<< HEAD
                     if(Isopen == true)
                     {
                         DrawMap();
@@ -141,9 +137,9 @@ namespace console_app
                     {
                         Menu.menu();
                     }
-=======
+
                     Menu.menu();
->>>>>>> c58d4aab3ebebd740391c9be1fed602ff5b1f5aa
+
                     break;
 
                 case ConsoleKey.Q:
