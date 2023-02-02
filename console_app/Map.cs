@@ -12,7 +12,7 @@ namespace console_app
     {
         char[,] _map;
 
-        int m_playerX = 14, m_playerY = 11;
+        int m_playerX = 11, m_playerY = 14;
 
 
         public Map()
@@ -45,7 +45,7 @@ namespace console_app
                 for (int i = 0; i < _map.GetLength(0); i++)
                 {
                     // Joueur
-                    if (m_playerY == i && m_playerX == j)
+                    if (m_playerX == i && m_playerY == j)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.BackgroundColor = ConsoleColor.Red;
@@ -98,31 +98,46 @@ namespace console_app
 
 
         }
+
         public void Move()
         {
             ConsoleKeyInfo key;
             key = Console.ReadKey();
+
             switch (key.Key)
             {
-                case ConsoleKey.S:
-                    m_playerX += 1;
-                    DrawMap();
-                    break;
-
                 case ConsoleKey.Z:
-                    m_playerX -= 1;
-                    DrawMap();
-                    break;
-
-                case ConsoleKey.D:
-                    m_playerY += 1;
-                    DrawMap();
+                    if (_map[m_playerX, m_playerY - 1] != '#')
+                    {
+                        m_playerY -= 1;
+                        DrawMap();
+                    }
                     break;
 
                 case ConsoleKey.Q:
-                    m_playerY -= 1;
-                    DrawMap();
+                    if (_map[m_playerX - 1, m_playerY] != '#')
+                    {
+                        m_playerX -= 1;
+                        DrawMap();
+                    }
                     break;
+
+                case ConsoleKey.S:
+                    if (_map[m_playerX, m_playerY + 1] != '#')
+                    {
+                        m_playerY += 1;
+                        DrawMap();
+                    }
+                    break;
+
+                case ConsoleKey.D:
+                    if (_map[m_playerX + 1, m_playerY] != '#')
+                    {
+                        m_playerX += 1;
+                        DrawMap();
+                    }
+                    break;
+
             }
         }
     }
