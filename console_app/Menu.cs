@@ -49,8 +49,14 @@ namespace console_app
         public static void MultipleChoice(params string[] options)
         {
             int currentPosition = 0;
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(options[0]);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(options[1]);
+            Console.WriteLine(options[2]);
 
-            ConsoleKey key = ConsoleKey.UpArrow;
+            ConsoleKey key; //= ConsoleKey.UpArrow;
             do
             {
                 // Get Input
