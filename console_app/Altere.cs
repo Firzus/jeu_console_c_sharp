@@ -16,6 +16,7 @@ namespace console_app
         protected float _speed;
         protected float _defense;
 
+        protected string _type = "";
         protected bool _typeFire;
         protected bool _typeWatter;
         protected bool _typeGround;
@@ -35,6 +36,8 @@ namespace console_app
         public float Defence { get => (float)Math.Round((_level * _coefLevelUp + 1) * _defense); }
 
         public string Name { get => _name; }
+
+        public string Type { get => _type; }
 
         public void TakeDamage(float nbDegats)
         {

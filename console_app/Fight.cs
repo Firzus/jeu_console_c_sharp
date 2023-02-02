@@ -21,9 +21,13 @@ namespace console_app
 
         public static void FightScene()
         {
-            Console.WriteLine(" Un " + AltereIAActive().Name + " niveau " + AltereIAActive().Level + " sauvage apparait !\n");
+            Console.WriteLine(" Un " + AltereIAActive().Name + " de niveau " + AltereIAActive().Level + " sauvage apparait !\n");
+            Console.WriteLine(" Stats : Type " + AltereIAActive().Type + " | " + AltereIAActive().Life + " Vitalité | " + AltereIAActive().Damage + " Attaque | " + AltereIAActive().Defence + " Défence | " + AltereIAActive().Speed + " Vitesse\n");
 
-            Console.WriteLine(" " + AlterePLayerActive().Name + " niveau " + AlterePLayerActive().Level + " à toi de jouer !\n");
+
+            Console.WriteLine(" " + AlterePLayerActive().Name + " de niveau " + AlterePLayerActive().Level + " à toi de jouer !\n");
+            Console.WriteLine(" Stats : Type " + AlterePLayerActive().Type + " | " + AlterePLayerActive().Life + " Vitalité | " + AlterePLayerActive().Damage + " Attaque | " + AlterePLayerActive().Defence + " Défence | " + AlterePLayerActive().Speed + " Vitesse\n");
+
 
             // determine le premier
             if (AlterePLayerActive().Speed > AltereIAActive().Speed)
@@ -52,7 +56,17 @@ namespace console_app
 
                         Thread.Sleep(2500);
 
-                        AltereIAActive().BasicAttack(AlterePLayerActive());
+                        Random random = new Random();
+
+                        if (random.Next(2) == 0)
+                        {
+                            AltereIAActive().BasicAttack(AlterePLayerActive());
+                        }
+                        else
+                        {
+                            AltereIAActive().ElementarySpell(AlterePLayerActive());
+                        }
+
                         Console.WriteLine(" " + AltereIAActive().Name + " attaque " + AlterePLayerActive().Name);
                         Console.WriteLine(" Vie de " + AlterePLayerActive().Name + " : " + AlterePLayerActive().Life);;
 
@@ -86,6 +100,7 @@ namespace console_app
                                 case "1":
                                     AlterePLayerActive().BasicAttack(AltereIAActive());
                                     Console.WriteLine(" " + AlterePLayerActive().Name + " attaque " + AltereIAActive().Name);
+                                    Console.WriteLine(" " + AltereIAActive().Name + " - " + AlterePLayerActive().Damage + " pdv\n");
                                     Console.WriteLine(" Vie de " + AltereIAActive().Name + " : " + AltereIAActive().Life + "\n");
                                     break;
 
@@ -98,6 +113,7 @@ namespace console_app
                                 case "2":
                                     AlterePLayerActive().ElementarySpell(AltereIAActive());
                                     Console.WriteLine(" " + AlterePLayerActive().Name + " attaque " + AltereIAActive().Name);
+                                    Console.WriteLine(" " + AltereIAActive().Name + " - " + AlterePLayerActive().Damage + " pdv\n");
                                     Console.WriteLine(" Vie de " + AltereIAActive().Name + " : " + AltereIAActive().Life + "\n");
                                     break;
 

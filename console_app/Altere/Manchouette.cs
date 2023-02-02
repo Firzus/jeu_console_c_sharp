@@ -20,6 +20,7 @@ namespace console_app.Pokemons
             _damage = 20.0f;
             _speed = 35.0f;
 
+            _type = "Eau";
             _typeFire = false;
             _typeWatter = true;
             _typeGround = false;
