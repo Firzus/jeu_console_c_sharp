@@ -1,31 +1,29 @@
-﻿using System.Text.Json;
+﻿using console_app;
+using System.Text.Json;
 
-namespace Save
+namespace console_app
 {
-    public class Données
+    public class DonnéesSortie
     {
-        public DateTimeOffset Date { get; set; }
-        public int TemperatureCelsius { get; set; }
-        public string? Summary { get; set; }
+        public int _playerX { get; set; }
+        public int _playerY { get; set; }
     }
 
-    internal class Save
+    public class Save
     {
-        public Save()
+        public void SaveData(int PlayerX, int PlayerY)
         {
-            var données = new Données
+            var données = new DonnéesSortie
             {
-                Date = DateTime.Parse("2019-08-01"),
-                TemperatureCelsius = 25,
-                Summary = "Hot"
+                _playerX = PlayerX,
+                _playerY = PlayerY,
             };
 
-            string fileName = "Save.json";
+            string fileName = @"Save.json";
             string jsonString = JsonSerializer.Serialize(données);
             File.WriteAllText(fileName, jsonString);
 
             Console.WriteLine(File.ReadAllText(fileName));
         }
-
     }
 }
