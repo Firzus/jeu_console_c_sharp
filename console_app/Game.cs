@@ -16,19 +16,20 @@ namespace YOURNAMESPACE
 
             Map map = new Map();
             Intro intro= new Intro();
-            while(Play == true)
+            
+            while (Play == true)
             {
                 if(Isdraw == false)
                 {
                    intro.drawIntro();
-                   map.DrawMap();
+                   map.drawMap();
                    Isdraw= true;
                 }
                 
                 map.Move();
                 
                 
-               /* if(Console.CancelKeyPress)
+               /*if(Console.CancelKeyPress)
                 {
                     play = false;
                 }*/
