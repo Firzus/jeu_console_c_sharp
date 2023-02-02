@@ -23,13 +23,15 @@ namespace console_app.Team
 
         static public void SetStarter()
         {
+            Console.Clear();
+
             Console.WriteLine(" Bienvenue dans le monde merveilleux d'Osatopia !");
             Console.WriteLine(" Je suis professeur Raimon Santo, je vais t'accompagner dans ton aventure.\n");
 
             Console.WriteLine(" Pour commencer choisi ton starter :\n");
             Console.WriteLine(" *1* Carafon *1* - *2* Manchouette *2* - *3* Volovan *3* - *4* Têtunel *4* \n");
 
-            while(_isStarterInputNull)
+            while (_isStarterInputNull)
             {
                 _isStarterInputNull = false;
 
@@ -82,6 +84,8 @@ namespace console_app.Team
 
         static public void SetTeamComposition()
         {
+            Console.Clear();
+
             Console.WriteLine(" Equipe :\n");
 
             Console.WriteLine(" 1 - " + _teamComposition[0]);
@@ -173,7 +177,7 @@ namespace console_app.Team
                                             _isSwitchAltereByNull = false;
 
                                             Console.WriteLine(" A la place de qui ?\n");
-                                            string _switchAltereBy= Console.ReadLine();
+                                            string _switchAltereBy = Console.ReadLine();
 
                                             switch (_switchAltereBy)
                                             {
