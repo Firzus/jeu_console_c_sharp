@@ -27,13 +27,11 @@ namespace console_app
         {
             Console.Clear();
             Console.WriteLine("Binvenue dans l'inventaire");
-            Console.WriteLine("Appuyer sur echap pour sortir");
+            Console.WriteLine("Appuyer sur space pour sortir");
             foreach (Object obj in _object)
             {
                 Console.WriteLine(obj);
             }
-            
-
         }
     }
 }
