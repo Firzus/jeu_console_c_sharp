@@ -84,10 +84,27 @@ namespace console_app
         public void Move()
         {
             ConsoleKeyInfo key;
-            key = Console.ReadKey() ;            
+            bool Isopen = false;
 
+            key = Console.ReadKey();
             switch (key.Key)
             {
+                case ConsoleKey.I:
+                    inventaire.WindowInventaire();
+                    Isopen = true;
+                    break;
+
+                case ConsoleKey.Escape:
+                    if(Isopen == true)
+                    {
+                        drawMap();
+                    }
+                    else if (Isopen == false) 
+                    {
+                        Menu.menu();
+                    }
+                    break;
+
                 case ConsoleKey.S:         
                     m_playerX += 1;
                     drawMap();
@@ -108,13 +125,12 @@ namespace console_app
                     drawMap();
                     break;
 
-                case ConsoleKey.I:
-                    inventaire.WindowInventaire();
-                    break;
-
                 case ConsoleKey.J:
                     inventaire.AddAtInventaire("Potion");
                     inventaire.AddAtInventaire("Pierre D'ames");
+                    break;
+                default:
+                    key = Console.ReadKey();
                     break;
                     
             }

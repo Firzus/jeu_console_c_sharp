@@ -26,7 +26,9 @@ namespace console_app
         public void WindowInventaire()
         {
             Console.Clear();
-            foreach(Object obj in _object)
+            Console.WriteLine("Binvenue dans l'inventaire");
+            Console.WriteLine("Appuyer sur echap pour sortir");
+            foreach (Object obj in _object)
             {
                 Console.WriteLine(obj);
             }

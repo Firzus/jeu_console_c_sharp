@@ -22,7 +22,6 @@ namespace YOURNAMESPACE
                 if(Isdraw == false)
                 {
                    intro.drawIntro();
-                   map.drawMap();
                    Isdraw= true;
                 }
                 

@@ -13,7 +13,7 @@ namespace console_app
 
             Name = "Potion";
             Quantiter = 1;
-            //IsConsomable = true;
+            IsConsomable = true;
 
         }
 
@@ -22,7 +22,7 @@ namespace console_app
 
             Name = name;
             Quantiter = 1;
-            //IsConsomable = true;
+            IsConsomable = true;
 
         }
     }

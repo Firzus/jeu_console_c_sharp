@@ -12,7 +12,7 @@ namespace console_app
         public PierreD_ames() {
 
             Name = "Pierre D'ames";
-           // IsConsomable = true;
+            IsConsomable = true;
             Quantiter = 1; 
             
         } 
@@ -20,7 +20,7 @@ namespace console_app
         public PierreD_ames(string name)
         {
             Name = name;
-            //IsConsomable= true;
+            IsConsomable= true;
             Quantiter = 1;
         }
 
