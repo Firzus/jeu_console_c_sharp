@@ -98,6 +98,52 @@ namespace console_app
 
 
         }
+
+        public void Move()
+        {
+            ConsoleKeyInfo key;
+            key = Console.ReadKey();
+
+            switch (key.Key)
+            {
+                case ConsoleKey.Z:
+                    if (_map[m_playerX - 1, m_playerY] != '#')
+                    {
+                        m_playerX -= 1;
+                        DrawMap();
+                    }
+                    break;
+
+                case ConsoleKey.Q:
+                    if (_map[m_playerX, m_playerY - 1] != '#')
+                    {
+                        m_playerY -= 1;
+                        DrawMap();
+                    }
+                    break;
+
+                case ConsoleKey.S:
+                    if (_map[m_playerX + 1, m_playerY] != '#')
+                    {
+                        m_playerX += 1;
+                        DrawMap();
+                    }
+                    break;
+
+                case ConsoleKey.D:
+                    if (_map[m_playerX, m_playerY + 1] != '#')
+                    {
+                        m_playerY += 1;
+                        DrawMap();
+                    }
+                    break;
+
+            }
+        }
+    }
+}
+
+/*
         public void Move()
         {
             ConsoleKeyInfo key;
@@ -124,6 +170,4 @@ namespace console_app
                     DrawMap();
                     break;
             }
-        }
-    }
-}
+        }*/
