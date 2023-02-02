@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace console_app
 {
-    internal class Map
+    public class Map
     {
         char[,] _map;
-        int m_playerX = 14 , m_playerY = 11;
+
+        int m_playerX = 11, m_playerY = 14;
 
         Inventaire inventaire = new Inventaire();
 
@@ -40,23 +41,44 @@ namespace console_app
         public void drawMap()
         {
             Console.Clear();
-            
+            var rand = new Random();
 
             for (int j = 0; j < _map.GetLength(1); j++)
             {
                 for (int i = 0; i < _map.GetLength(0); i++)
                 {
-                    if (m_playerY == i && m_playerX == j)
+                    // Joueur
+                    if (m_playerX == i && m_playerY == j)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.Write(_map[i, j]);
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.BackgroundColor = ConsoleColor.Black;
+
+                        // Hautes herbes
+                        if (_map[i, j] == '%')
+                        {
+                            int chance = rand.Next(5);
+                            if (chance < 2)
+                            {
+                                //Combat combat = new Combat();
+                                //combat.drawCombat();
+                                continue;
+                            }
+                        }
+
+                        // Objets
+                        else if (_map[i, j] == '!')
+                        {
+                            //Object object = new Object();
+                            //object.AddObject();
+                        }
+
                         continue;
                     }
 
-
+                    // Carte
                     switch (_map[i, j])
                     {
                         case '%':
@@ -83,17 +105,28 @@ namespace console_app
 
         public void Move()
         {
+        
             ConsoleKeyInfo key;
             bool Isopen = false;
-
+            
+            ConsoleKeyInfo key;
             key = Console.ReadKey();
+
             switch (key.Key)
             {
-                case ConsoleKey.I:
-                    inventaire.WindowInventaire();
-                    Isopen = true;
+               case ConsoleKey.I:
+                   inventaire.WindowInventaire();
+                   Isopen = true;
+                   break;
+                    
+                case ConsoleKey.Z:
+                    if (_map[m_playerX, m_playerY - 1] != '#')
+                    {
+                        m_playerY -= 1;
+                        DrawMap();
+                    }
                     break;
-
+                    
                 case ConsoleKey.Escape:
                     if(Isopen == true)
                     {
@@ -105,34 +138,39 @@ namespace console_app
                     }
                     break;
 
-                case ConsoleKey.S:         
-                    m_playerX += 1;
-                    drawMap();
+                case ConsoleKey.Q:
+                    if (_map[m_playerX - 1, m_playerY] != '#')
+                    {
+                        m_playerX -= 1;
+                        DrawMap();
+                    }
                     break;
 
-                case ConsoleKey.Z:
-                    m_playerX -= 1;
-                    drawMap();
+                case ConsoleKey.S:
+                    if (_map[m_playerX, m_playerY + 1] != '#')
+                    {
+                        m_playerY += 1;
+                        DrawMap();
+                    }
                     break;
 
                 case ConsoleKey.D:
-                    m_playerY += 1;
-                    drawMap();
+                    if (_map[m_playerX + 1, m_playerY] != '#')
+                    {
+                        m_playerX += 1;
+                        DrawMap();
+                    }
                     break;
-
-                case ConsoleKey.Q:
-                    m_playerY -= 1;
-                    drawMap();
-                    break;
-
+                    
                 case ConsoleKey.J:
                     inventaire.AddAtInventaire("Potion");
                     inventaire.AddAtInventaire("Pierre D'ames");
                     break;
+                    
                 default:
                     key = Console.ReadKey();
                     break;
-                    
+
             }
         }
     }

@@ -80,8 +80,8 @@ namespace console_app
                 Console.WriteLine();
             }
 
-            // Sleep for 2 seconds
-            Thread.Sleep(2000);
+            // Sleep for 1,5 seconds
+            Thread.Sleep(1500);
 
             Menu.menu();
         }

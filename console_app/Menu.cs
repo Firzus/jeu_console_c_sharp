@@ -70,13 +70,13 @@ namespace console_app
                 // Update
                 switch (key)
                 {
-                    case ConsoleKey.DownArrow:
+                    case ConsoleKey.S:
                         if (currentPosition < 2)
                         {
                             currentPosition++;
                         }
                         break;
-                    case ConsoleKey.UpArrow:
+                    case ConsoleKey.Z:
                         if (currentPosition > 0)
                         {
                             currentPosition--;
@@ -123,7 +123,7 @@ namespace console_app
                 {
                     case 0:
                         Map map = new Map();
-                        map.drawMap();
+                        map.DrawMap();
                         break;
                     case 1:
                         return;
