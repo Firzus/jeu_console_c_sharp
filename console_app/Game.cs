@@ -1,9 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using System.Runtime.Versioning;
-
+﻿using System.Runtime.Versioning;
 using console_app;
-using console_app.Pokemons;
-using console_app.Team;
 
 namespace YOURNAMESPACE
 {
@@ -12,7 +8,33 @@ namespace YOURNAMESPACE
     {
         static void Main()
         {
-            // test
+            bool Play = true;
+            bool Isdraw = false;
+
+            ConsoleManager.WindowSetup();
+
+            Map map = new Map();
+            Intro intro= new Intro();
+            
+            while (Play == true)
+            {
+                if(Isdraw == false)
+                {
+                   intro.drawIntro();
+                   Isdraw= true;
+                }
+                
+                map.Move();
+                
+                
+               /*if(Console.CancelKeyPress)
+                {
+                    play = false;
+                }*/
+            }
+            
+            /* 
+            
             TeamIA.SetTeamComposition();
 
             TeamPlayer.SetStarter();
@@ -20,6 +42,8 @@ namespace YOURNAMESPACE
 
             // fight
             Fight.FightScene();
+            
+            */
         }
     }
 }
