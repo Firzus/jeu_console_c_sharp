@@ -12,11 +12,31 @@ namespace YOURNAMESPACE
     {
         static void Main()
         {
-            // DEBUG
-            //ConsoleManager.WindowSetup();
-            // DEBUG
+            bool Play = true;
+            bool Isdraw = false;
 
-            // test
+            Map map = new Map();
+            Intro intro= new Intro();
+            while(Play == true)
+            {
+                if(Isdraw == false)
+                {
+                   intro.drawIntro();
+                   map.DrawMap();
+                   Isdraw= true;
+                }
+                
+                map.Move();
+                
+                
+               /* if(Console.CancelKeyPress)
+                {
+                    play = false;
+                }*/
+            }
+            
+            /* 
+            
             TeamIA.SetTeamComposition();
 
             TeamPlayer.SetStarter();
@@ -24,6 +44,8 @@ namespace YOURNAMESPACE
 
             // fight
             Fight.FightScene();
+            
+            */
         }
     }
 }
