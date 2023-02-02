@@ -35,7 +35,7 @@ namespace YOURNAMESPACE
             //Set console properties
             /*Console.Title = ;*/
             Console.TreatControlCAsInput = true;
-            Console.CursorVisible = false;
+            //Console.CursorVisible = false;
 
             //Set console size to 80% of the largest possible size
             int width = (int)(Console.LargestWindowWidth * 0.8);
