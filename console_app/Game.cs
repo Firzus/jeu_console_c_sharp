@@ -1,9 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using System.Runtime.Versioning;
-
+﻿using System.Runtime.Versioning;
 using console_app;
-using console_app.Pokemons;
-using console_app.Team;
 
 namespace YOURNAMESPACE
 {
@@ -14,6 +10,8 @@ namespace YOURNAMESPACE
         {
             bool Play = true;
             bool Isdraw = false;
+
+            ConsoleManager.WindowSetup();
 
             Map map = new Map();
             Intro intro= new Intro();

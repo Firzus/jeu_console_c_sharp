@@ -1,11 +1,4 @@
-﻿using console_app.Pokemons;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace console_app
+﻿namespace console_app
 {
     internal class Altere
     {

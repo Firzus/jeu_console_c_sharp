@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using console_app.Team;
 
 namespace console_app
 {
@@ -40,6 +32,7 @@ namespace console_app
 
         public void drawMap()
         {
+            debut_map:
             Console.Clear();
             var rand = new Random();
 
@@ -62,14 +55,18 @@ namespace console_app
                             int chance = rand.Next(5);
                             if (chance < 2)
                             {
-                                //Combat combat = new Combat();
-                                //combat.drawCombat();
-                                continue;
+                                Fight fight = new Fight();
+
+                                TeamIA.SetTeamComposition();
+
+                                // fight
+                                fight.FightScene();
+                                goto debut_map;
                             }
                         }
 
                         // Objets
-                        else if (_map[i, j] == '!')
+                        if (_map[i, j] == '!')
                         {
                             //Object object = new Object();
                             //object.AddObject();
