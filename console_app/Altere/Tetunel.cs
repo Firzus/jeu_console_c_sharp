@@ -7,54 +7,22 @@ using System.Threading.Tasks;
 
 namespace console_app.Pokemons
 {
-    internal class Tetunel
+    internal class Tetunel : Altere
     {
-        static private string m_name = "Tetunel";
-        private float m_vie = 50.0f;
-        private float m_degats = 30.0f;
-        static private float m_speed = 50.0f;
-        // varie de 0 à 100 , 50 = 50% de res
-        private float m_defence = 0.0f;
+        public static string SrcName => "Tetunel";
 
-        static public Tetunel Create()
+        public Tetunel()
         {
-            return new Tetunel();
-        }
+            Random random = new Random();
 
-        public void TakeDamage(float nbDegats)
-        {
-            m_vie -= nbDegats;
+            _name = "Tetunel";
+            _level = (float)random.Next(1, 6);
+            _life = 50.0f;
+            _damage = 30.0f;
+            _speed = 50.0f;
 
-            if (m_vie < 0)
-            {
-                m_vie = 0;
-            }
-        }
-
-        public void Attack(Pikachu cible)
-        {
-            TakeDamage((1 - m_defence / 100) * m_degats);
-        }
-
-        public bool IsAlive()
-        {
-            return m_vie > 0;
-        }
-
-        static public float GetSpeed()
-        {
-            return m_speed;
-        }
-
-        static public string GetName()
-        {
-            return m_name;
-        }
-
-        // debug
-        public void Infos()
-        {
-            Console.WriteLine("Vie Tetunel: " + m_vie);
+            // varie de 0 à 100 , 50 = 50% de res
+            _defense = 10.0f;
         }
     }
 }

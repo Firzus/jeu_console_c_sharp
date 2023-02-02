@@ -10,32 +10,16 @@ namespace console_app.Team
 {
     internal class TeamPlayer
     {
-        static private string m_starter = "";
+        static private string _starter = "";
 
-        static private bool m_isStarterInputNull = true;
-        static private bool m_isSwitchAltereNull = true;
-        static private bool m_isSwitchAltereByNull = true;
-        static private bool m_isTeamChangeNull = true;
+        static private bool _isStarterInputNull = true;
+        static private bool _isSwitchAltereNull = true;
+        static private bool _isSwitchAltereByNull = true;
+        static private bool _isTeamChangeNull = true;
 
-        // team select
-        static private bool m_isCarafonSelected = false;
-        static private bool m_isManchouetteSelected = false;
-        static private bool m_isVolovanSelected = false;
-        static private bool m_isPikachuSelected = false;
-        static private bool m_isTetunelSelected = false;
+        static private string[] _teamComposition = new string[3];
 
-        static private string[] m_teamComposition = new string[3];
-
-        static public TeamPlayer Create()
-        {
-            return new TeamPlayer();
-        }
-
-        private static void FlushKeyboard()
-        {
-            while (Console.In.Peek() != -1)
-                Console.In.Read();
-        }
+        public static string[] TeamComposition { get => _teamComposition; set => _teamComposition = value; }
 
         static public void SetStarter()
         {
@@ -45,9 +29,9 @@ namespace console_app.Team
             Console.WriteLine(" Pour commencer choisi ton starter :\n");
             Console.WriteLine(" *1* Carafon *1* - *2* Manchouette *2* - *3* Volovan *3* - *4* Têtunel *4* \n");
 
-            while(m_isStarterInputNull)
+            while(_isStarterInputNull)
             {
-                m_isStarterInputNull = false;
+                _isStarterInputNull = false;
 
                 Console.WriteLine(" Qui veux-tu choisir ?\n");
                 string m_starterInput = Console.ReadLine();
@@ -57,27 +41,24 @@ namespace console_app.Team
                     case "1":
                     case "Carafon":
                     case "carafon":
-                        m_isCarafonSelected = true;
-                        m_starter = "Carafon";
-                        m_teamComposition[0] = m_starter;
+                        _starter = "Carafon";
+                        _teamComposition[0] = _starter;
                         Console.WriteLine("\n Très bon choix, Carafon sera un très grand allié !\n");
                         break;
 
                     case "2":
                     case "Manchouette":
                     case "manchouette":
-                        m_isManchouetteSelected = true;
-                        m_starter = "Manchouette";
-                        m_teamComposition[0] = m_starter;
+                        _starter = "Manchouette";
+                        _teamComposition[0] = _starter;
                         Console.WriteLine("\n Très bon choix, Manchouette sera un très grand allié !\n");
                         break;
 
                     case "3":
                     case "Volovan":
                     case "volovan":
-                        m_isVolovanSelected = true;
-                        m_starter = "Volovan";
-                        m_teamComposition[0] = m_starter;
+                        _starter = "Volovan";
+                        _teamComposition[0] = _starter;
                         Console.WriteLine("\n Très bon choix, Volovan sera un très grand allié !\n");
                         break;
 
@@ -86,15 +67,14 @@ namespace console_app.Team
                     case "tetunel":
                     case "Têtunel":
                     case "têtunel":
-                        m_isTetunelSelected = true;
-                        m_starter = Tetunel.GetName();
-                        m_teamComposition[0] = m_starter;
+                        _starter = "Tetunel";
+                        _teamComposition[0] = _starter;
                         Console.WriteLine("\n Très bon choix, Tetunel sera un très grand allié !\n");
                         break;
 
                     default:
                         Console.WriteLine("Je n'ai pas compris, veillez recommencer. \n");
-                        m_isStarterInputNull = true;
+                        _isStarterInputNull = true;
                         break;
                 }
             }
@@ -104,75 +84,73 @@ namespace console_app.Team
         {
             Console.WriteLine(" Equipe :\n");
 
-            Console.WriteLine(" 1 - " + m_teamComposition[0]);
-            Console.WriteLine(" 2 - " + m_teamComposition[1]);
-            Console.WriteLine(" 3 - " + m_teamComposition[2] + "\n");
+            Console.WriteLine(" 1 - " + _teamComposition[0]);
+            Console.WriteLine(" 2 - " + _teamComposition[1]);
+            Console.WriteLine(" 3 - " + _teamComposition[2] + "\n");
 
             Console.WriteLine(" Vos altérés :\n");
 
-            Console.WriteLine(" * " + Tetunel.GetName() + " *");
-            Console.WriteLine(" * " + Pikachu.GetName() + " *\n");
+            Console.WriteLine(" * Microcher *");
+            Console.WriteLine(" * Pikachu *\n");
 
-            while (m_isTeamChangeNull)
+            while (_isTeamChangeNull)
             {
-                m_isTeamChangeNull = false;
+                _isTeamChangeNull = false;
 
                 Console.WriteLine(" Souhaitez-vous changer la composition de vôtre équipe ?\n");
-                string m_teamChange = Console.ReadLine();
+                string _teamChange = Console.ReadLine();
 
-                switch (m_teamChange)
+                switch (_teamChange)
                 {
                     case "oui":
                     case "Oui":
 
-                        while (m_isSwitchAltereNull)
+                        while (_isSwitchAltereNull)
                         {
-                            m_isSwitchAltereNull = false;
+                            _isSwitchAltereNull = false;
 
                             Console.WriteLine(" Qui veux-tu ajouter ?\n");
-                            string m_switchAltere = Console.ReadLine();
+                            string _switchAltere = Console.ReadLine();
 
-                            switch (m_switchAltere)
+                            switch (_switchAltere)
                             {
                                 case "Tetunel":
                                 case "Têtunel":
                                 case "tetunel":
                                 case "têtunel":
 
-                                    if (m_isTetunelSelected)
+                                    if (_teamComposition[0] == "Tetunel" || _teamComposition[1] == "Tetunel" || _teamComposition[2] == "Tetunel")
                                     {
                                         Console.WriteLine(" Il est déjà dans ton équipe.\n");
 
-                                        m_isSwitchAltereNull = true;
+                                        _isSwitchAltereNull = true;
                                     }
                                     else
                                     {
-                                        while (m_isSwitchAltereByNull)
+                                        while (_isSwitchAltereByNull)
                                         {
-                                            m_isSwitchAltereByNull = false;
+                                            _isSwitchAltereByNull = false;
 
                                             Console.WriteLine(" A la place de qui ?\n");
-                                            string m_switchAltereBy = Console.ReadLine();
+                                            string _switchAltereBy = Console.ReadLine();
 
-                                            switch (m_switchAltereBy)
+                                            switch (_switchAltereBy)
                                             {
                                                 case "Pikachu":
                                                 case "pikachu":
                                                     Console.WriteLine(" Ajout de Pikachu à ton équipe.\n");
-                                                    m_isTetunelSelected = false;
-                                                    m_isPikachuSelected = true;
-                                                    for (int i = 0; i < m_teamComposition.Length; i++)
+                                                    for (int i = 0; i < _teamComposition.Length; i++)
                                                     {
-                                                        if (m_teamComposition[i] == Tetunel.GetName()) // old value
+                                                        if (_teamComposition[i] == "Tetunel") // old value
                                                         {
-                                                            m_teamComposition[i] = Pikachu.GetName(); // new value
+                                                            _teamComposition[i] = "Pikachu"; // new value
                                                         }
                                                     }
                                                     break;
 
                                                 default:
                                                     Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
-                                                    m_isSwitchAltereByNull = true;
+                                                    _isSwitchAltereByNull = true;
                                                     break;
                                             }
                                         }
@@ -182,40 +160,38 @@ namespace console_app.Team
                                 case "Pikachu":
                                 case "pikachu":
 
-                                    if (m_isPikachuSelected)
+                                    if (_teamComposition[0] == "Pikachu" || _teamComposition[1] == "Pikachu" || _teamComposition[2] == "Pikachu")
                                     {
                                         Console.WriteLine(" Il est déjà dans ton équipe.\n");
 
-                                        m_isSwitchAltereNull = true;
+                                        _isSwitchAltereNull = true;
                                     }
                                     else
                                     {
-                                        while (m_isSwitchAltereByNull)
+                                        while (_isSwitchAltereByNull)
                                         {
-                                            m_isSwitchAltereByNull = false;
+                                            _isSwitchAltereByNull = false;
 
                                             Console.WriteLine(" A la place de qui ?\n");
-                                            string m_switchAltereBy = Console.ReadLine();
+                                            string _switchAltereBy= Console.ReadLine();
 
-                                            switch (m_switchAltereBy)
+                                            switch (_switchAltereBy)
                                             {
                                                 case "Tetunel":
                                                 case "tetunel":
                                                     Console.WriteLine(" Ajout de Tetunel à ton équipe.\n");
-                                                    m_isPikachuSelected = false;
-                                                    m_isTetunelSelected = true;
-                                                    for (int i = 0; i < m_teamComposition.Length; i++)
+                                                    for (int i = 0; i < _teamComposition.Length; i++)
                                                     {
-                                                        if (m_teamComposition[i] == Pikachu.GetName()) // old value
+                                                        if (_teamComposition[i] == "Pikachu") // old value
                                                         {
-                                                            m_teamComposition[i] = Tetunel.GetName(); // new value
+                                                            _teamComposition[i] = "Tetunel"; // new value
                                                         }
                                                     }
                                                     break;
 
                                                 default:
                                                     Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
-                                                    m_isSwitchAltereByNull = true;
+                                                    _isSwitchAltereByNull = true;
                                                     break;
                                             }
                                         }
@@ -224,7 +200,7 @@ namespace console_app.Team
 
                                 default:
                                     Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
-                                    m_isSwitchAltereNull = true;
+                                    _isSwitchAltereNull = true;
                                     break;
                             }
                         }
@@ -237,7 +213,7 @@ namespace console_app.Team
 
                     default:
                         Console.WriteLine(" Je n'ai pas compris, veillez recommencer. \n");
-                        m_isTeamChangeNull = true;
+                        _isTeamChangeNull = true;
                         break;
                 }
             }
@@ -245,23 +221,17 @@ namespace console_app.Team
 
         static public string GetFirstAltere()
         {
-            return m_teamComposition[0];
+            return _teamComposition[0];
         }
 
         static public string GetSecondAltere()
         {
-            return m_teamComposition[1];
+            return _teamComposition[1];
         }
 
         static public string GetThirdAltere()
         {
-            return m_teamComposition[2];
+            return _teamComposition[2];
         }
-
-        static public bool IsTetunelSelected()
-        {
-            return m_isTetunelSelected;
-        }
-
     }
 }

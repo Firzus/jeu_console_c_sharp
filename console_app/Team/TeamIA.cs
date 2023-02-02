@@ -9,41 +9,21 @@ namespace console_app.Team
 {
     internal class TeamIA
     {
-        static private bool m_isCarafonSelected = false;
-        static private bool m_isManchouetteSelected = false;
-        static private bool m_isVolovanSelected = false;
-        static private bool m_isPikachuSelected = false;
-        static private bool m_isTetunelSelected = false;
-
         static private string[] m_teamComposition = new string[3];
+
+        public static string[] TeamComposition { get => m_teamComposition; set => m_teamComposition = value; }
 
         static public void SetTeamComposition()
         {
-            m_isPikachuSelected = true;
+            string[] options = { Microcher.SrcName, Goinfrelon.SrcName, Cochombre.SrcName, Chacharmant.SrcName };
 
-            m_teamComposition[0] = Pikachu.GetName();
-            m_teamComposition[1] = "";
-            m_teamComposition[2] = "";
-        }
+            Random random = new Random();
 
-        static public string GetFirstAltere()
-        {
-            return m_teamComposition[0];
-        }
+            int randomIndex = random.Next(0, options.Length);
 
-        static public string GetSecondAltere()
-        {
-            return m_teamComposition[1];
-        }
-
-        static public string GetThirdAltere()
-        {
-            return m_teamComposition[2];
-        }
-
-        static public bool IsPikachuSelected()
-        {
-            return m_isPikachuSelected;
+            m_teamComposition[0] = options[randomIndex];
+            m_teamComposition[1] = options[randomIndex];
+            m_teamComposition[2] = options[randomIndex];
         }
     }
 }

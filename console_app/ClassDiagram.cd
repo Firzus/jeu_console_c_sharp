@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="console_app.Pokemons.Pikachu">
+    <Position X="1.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Altere\Pikachu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="console_app.Pokemons.Tetunel">
+    <Position X="4.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Altere\Tetunel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="console_app.Altere">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARAAIADAAAAAAAAAAAEAAAQBAIAAAAAABAAAggABAAA=</HashCode>
+      <FileName>Altere.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
