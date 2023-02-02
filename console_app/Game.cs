@@ -10,10 +10,13 @@ namespace YOURNAMESPACE
     [SupportedOSPlatform("windows")]
     internal static class Game
     {
+        
         static void Main()
         {
             bool Play = true;
             bool Isdraw = false;
+
+            ConsoleManager.WindowSetup();
 
             Map map = new Map();
             Intro intro= new Intro();

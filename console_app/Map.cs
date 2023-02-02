@@ -38,7 +38,7 @@ namespace console_app
         }
 
 
-        public void drawMap()
+        public void DrawMap()
         {
             Console.Clear();
             var rand = new Random();
@@ -109,7 +109,6 @@ namespace console_app
             ConsoleKeyInfo key;
             bool Isopen = false;
             
-            ConsoleKeyInfo key;
             key = Console.ReadKey();
 
             switch (key.Key)
@@ -130,7 +129,7 @@ namespace console_app
                 case ConsoleKey.Escape:
                     if(Isopen == true)
                     {
-                        drawMap();
+                        DrawMap();
                     }
                     else if (Isopen == false) 
                     {
