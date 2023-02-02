@@ -1,23 +1,23 @@
-﻿using System.Text.Json;
+﻿using console_app;
+using System.Text.Json;
 
-namespace Save
+namespace console_app
 {
     public class Données
     {
-        public DateTimeOffset Date { get; set; }
-        public int TemperatureCelsius { get; set; }
-        public string? Summary { get; set; }
+        public int _playerX { get; set; }
+        public int _playerY { get; set; }
+
     }
 
-    internal class Save
+    public class Save
     {
-        public Save()
+        public void SaveData(int m_playerX, int m_playerY)
         {
             var données = new Données
             {
-                Date = DateTime.Parse("2019-08-01"),
-                TemperatureCelsius = 25,
-                Summary = "Hot"
+                _playerX = m_playerX,
+                _playerY = m_playerY,
             };
 
             string fileName = "Save.json";

@@ -32,7 +32,7 @@ namespace console_app
 
         public void DrawMap()
         {
-        debut_map:
+            debut_map:
             Console.Clear();
             var rand = new Random();
 
@@ -95,10 +95,7 @@ namespace console_app
                 }
                 Console.WriteLine();
             }
-
-
         }
-
 
         public void Move()
         {

@@ -124,6 +124,11 @@ namespace console_app
                         map.DrawMap();
                         break;
                     case 1:
+                        /*
+                        Map map1 = new Map();
+                        Save save = new Save();
+                        save.SaveData(map1.m_playerX, map1.m_playerY);
+                        */
                         return;
                     case 2:
                         return;
