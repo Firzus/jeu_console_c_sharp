@@ -94,7 +94,6 @@ namespace console_app
                                 case "1":
                                     AlterePLayerActive().BasicAttack(AltereIAActive());
                                     Console.WriteLine(" " + AlterePLayerActive().Name + " attaque " + AltereIAActive().Name);
-                                    Console.WriteLine(" " + AltereIAActive().Name + " - " + AlterePLayerActive().Damage + " pdv\n");
                                     Console.WriteLine(" Vie de " + AltereIAActive().Name + " : " + AltereIAActive().Life + "\n");
                                     break;
 
@@ -107,7 +106,6 @@ namespace console_app
                                 case "2":
                                     AlterePLayerActive().ElementarySpell(AltereIAActive());
                                     Console.WriteLine(" " + AlterePLayerActive().Name + " attaque " + AltereIAActive().Name);
-                                    Console.WriteLine(" " + AltereIAActive().Name + " - " + AlterePLayerActive().Damage + " pdv\n");
                                     Console.WriteLine(" Vie de " + AltereIAActive().Name + " : " + AltereIAActive().Life + "\n");
                                     break;
 

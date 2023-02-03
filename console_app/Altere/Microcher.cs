@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using console_app.Objects;
-
 namespace console_app.Pokemons
 {
     internal class Microcher : Altere
